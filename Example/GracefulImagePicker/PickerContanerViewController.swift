@@ -24,6 +24,13 @@ class PickerContanerViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             
         }
+        pickerView.imageSelected = { image, asset in
+            
+            let resultView = ImageSelectedViewController()
+            resultView.image = image
+            self.navigationController?.pushViewController(resultView, animated: true)
+            
+        }
         self.view.addSubview(pickerView)
         self.imagePickerView = pickerView
         

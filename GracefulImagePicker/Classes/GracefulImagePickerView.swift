@@ -20,6 +20,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     var titleView: ImagePickerTitleView?
     
     public var backClicked: (() -> Void)?
+    public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
     override init(frame: CGRect) {
         
@@ -206,8 +207,93 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
+    var currentLoadingID: PHImageRequestID?
+    var currentLoadingIndexPath: IndexPath?
+    var startCancel: Bool = false
+    
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        guard let asset = self.assetResult?[indexPath.row] else { return }
+        
+        if let loadingID = self.currentLoadingID {
+            
+            // Cancel current loading tasks.
+            self.currentLoadingID = nil
+            PHImageManager.default().cancelImageRequest(loadingID)
+            
+            if let loadingIndexPath = self.currentLoadingIndexPath {
+                
+                self.currentLoadingIndexPath = nil
+                if let cell = collectionView.cellForItem(at: loadingIndexPath) as? ImageCollectionViewCell {
+                    //恢复视图状态
+                    cell.downloadCanceled = true
+                    cell.cancelLoadingMode()
+                    
+                }
+                
+            }
+            
+        }
+        
+        var analyticsSent = false
+        
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.resizeMode = .exact
+        requestOptions.deliveryMode = .highQualityFormat
+        requestOptions.isNetworkAccessAllowed = true
+        requestOptions.progressHandler = { progress, error, stop, info in
+            
+            DispatchQueue.main.async {
+                
+                if analyticsSent == false {
+                    
+                    analyticsSent = true
+                    
+                }
+                
+                if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
+                    
+                    if cell.downloadCanceled == false {
+                        
+                        cell.startLoadingMode()
+//                        cell.progressBar?.setProgress(CGFloat(progress), animated: false)
+                        
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        self.currentLoadingIndexPath = indexPath
+        self.startCancel = false
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
+            
+            cell.downloadCanceled = false
+            
+        }
+        
+        self.currentLoadingID = PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFill, options: requestOptions,resultHandler: { (image, info) in
+            
+            if let img = image {
+                
+                //图片加载完成， 才会进入
+                if let imageSelected = self.imageSelected {
+                    
+                    imageSelected(img, asset)
+                    
+                }
+                
+                if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
+                    //恢复视图状态
+                    cell.finishDownload()
+                    cell.cancelLoadingMode()
+                    
+                }
+                
+            }
+            
+        })
         
         
     }

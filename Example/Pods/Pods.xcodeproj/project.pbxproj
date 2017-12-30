@@ -19,12 +19,10 @@
 		0C20F30D8E38C64BEBC8BD3906BECE89 /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999D8E772AB02DD29403AF44FF3BFE5 /* QCKDSL.m */; };
 		1087CDD61FF48EC1008BD1C0 /* GracefulImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDD51FF48EC1008BD1C0 /* GracefulImagePickerView.swift */; };
 		1087CDD71FF48EC1008BD1C0 /* GracefulImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDD51FF48EC1008BD1C0 /* GracefulImagePickerView.swift */; };
-		1087CDDB1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDDA1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift */; };
-		1087CDDC1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDDA1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift */; };
-		1087CDDE1FF52627008BD1C0 /* AlbumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDDD1FF52627008BD1C0 /* AlbumCollection.swift */; };
-		1087CDDF1FF52627008BD1C0 /* AlbumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDDD1FF52627008BD1C0 /* AlbumCollection.swift */; };
-		1087CDE31FF66D9A008BD1C0 /* ImagePickerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDE21FF66D9A008BD1C0 /* ImagePickerTitleView.swift */; };
-		1087CDE41FF66D9A008BD1C0 /* ImagePickerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDE21FF66D9A008BD1C0 /* ImagePickerTitleView.swift */; };
+		10A32EA91FF7A1A700EAB8F3 /* GracefulImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A32EA81FF7A1A700EAB8F3 /* GracefulImagePickerViewController.swift */; };
+		10A32EAD1FF7A53200EAB8F3 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A32EAA1FF7A53200EAB8F3 /* ImageCollectionViewCell.swift */; };
+		10A32EAE1FF7A53200EAB8F3 /* AlbumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A32EAB1FF7A53200EAB8F3 /* AlbumCollection.swift */; };
+		10A32EAF1FF7A53200EAB8F3 /* ImagePickerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A32EAC1FF7A53200EAB8F3 /* ImagePickerTitleView.swift */; };
 		11FFE53DA5009D9DA24E4858632D19DB /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3B9455664D13744657268D75172AD1 /* Closures.swift */; };
 		16409C737271C4F1D7FEEFB91E317D5A /* CwlPreconditionTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = E2761C9F8CE8FE243E97D2F8CF8F995A /* CwlPreconditionTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17C8EE7DF3F57C8F99EAF63C6E61EA99 /* FailureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B1B511E39E9B7B70B55FED1754B00 /* FailureMessage.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -244,9 +242,10 @@
 		0C826323C6CDC4C15F1D1242AC2B5B48 /* DynamicSizeSnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DynamicSizeSnapshot.swift; path = DynamicSize/DynamicSizeSnapshot.swift; sourceTree = "<group>"; };
 		0F0C43403E98583917CF2D62C515398A /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
 		1087CDD51FF48EC1008BD1C0 /* GracefulImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GracefulImagePickerView.swift; path = GracefulImagePicker/Classes/GracefulImagePickerView.swift; sourceTree = "<group>"; };
-		1087CDDA1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		1087CDDD1FF52627008BD1C0 /* AlbumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollection.swift; sourceTree = "<group>"; };
-		1087CDE21FF66D9A008BD1C0 /* ImagePickerTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerTitleView.swift; sourceTree = "<group>"; };
+		10A32EA81FF7A1A700EAB8F3 /* GracefulImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GracefulImagePickerViewController.swift; path = GracefulImagePicker/Classes/GracefulImagePickerViewController.swift; sourceTree = "<group>"; };
+		10A32EAA1FF7A53200EAB8F3 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCollectionViewCell.swift; path = GracefulImagePicker/Classes/ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		10A32EAB1FF7A53200EAB8F3 /* AlbumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollection.swift; path = GracefulImagePicker/Classes/AlbumCollection.swift; sourceTree = "<group>"; };
+		10A32EAC1FF7A53200EAB8F3 /* ImagePickerTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePickerTitleView.swift; path = GracefulImagePicker/Classes/ImagePickerTitleView.swift; sourceTree = "<group>"; };
 		10EFC5CA9570D0B49DEBF130AE38E738 /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
 		133E2EFE9F50B2519175BB3239377C9D /* ThrowAssertion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThrowAssertion.swift; path = Sources/Nimble/Matchers/ThrowAssertion.swift; sourceTree = "<group>"; };
 		145648E24DFDBA22E589895209DECEAF /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -587,10 +586,11 @@
 		25ECE4B9A9BEE835897FC177C0DB5BF4 /* GracefulImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				1087CDDD1FF52627008BD1C0 /* AlbumCollection.swift */,
-				1087CDDA1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift */,
-				1087CDE21FF66D9A008BD1C0 /* ImagePickerTitleView.swift */,
+				10A32EAB1FF7A53200EAB8F3 /* AlbumCollection.swift */,
+				10A32EAA1FF7A53200EAB8F3 /* ImageCollectionViewCell.swift */,
+				10A32EAC1FF7A53200EAB8F3 /* ImagePickerTitleView.swift */,
 				1087CDD51FF48EC1008BD1C0 /* GracefulImagePickerView.swift */,
+				10A32EA81FF7A1A700EAB8F3 /* GracefulImagePickerViewController.swift */,
 				8CCFDC7D62D8072803337DB081FDA290 /* Support Files */,
 			);
 			name = GracefulImagePicker;
@@ -1259,11 +1259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1087CDDC1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift in Sources */,
-				1087CDDF1FF52627008BD1C0 /* AlbumCollection.swift in Sources */,
 				1087CDD71FF48EC1008BD1C0 /* GracefulImagePickerView.swift in Sources */,
-				1087CDE41FF66D9A008BD1C0 /* ImagePickerTitleView.swift in Sources */,
 				06D0ED310C5EA870F342A01A7EA75BE7 /* GracefulImagePicker-dummy.m in Sources */,
+				10A32EAD1FF7A53200EAB8F3 /* ImageCollectionViewCell.swift in Sources */,
+				10A32EAE1FF7A53200EAB8F3 /* AlbumCollection.swift in Sources */,
+				10A32EA91FF7A1A700EAB8F3 /* GracefulImagePickerViewController.swift in Sources */,
+				10A32EAF1FF7A53200EAB8F3 /* ImagePickerTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,16 +1273,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				506D761F91EC3583789A837C559972FE /* FBSnapshotTestCase-dummy.m in Sources */,
-				1087CDDB1FF4A83F008BD1C0 /* ImageCollectionViewCell.swift in Sources */,
 				BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */,
 				DB7A106243AC974FC7EBEB00B506C786 /* FBSnapshotTestCasePlatform.m in Sources */,
 				1087CDD61FF48EC1008BD1C0 /* GracefulImagePickerView.swift in Sources */,
 				A4F69F3477A935285620AC3031C5C848 /* FBSnapshotTestController.m in Sources */,
 				1AB7934C16CE49DE196FFC7BE7278287 /* SwiftSupport.swift in Sources */,
-				1087CDE31FF66D9A008BD1C0 /* ImagePickerTitleView.swift in Sources */,
 				094973D2D2F1E3B2E772F93C8147C6B9 /* UIApplication+StrictKeyWindow.m in Sources */,
 				69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */,
-				1087CDDE1FF52627008BD1C0 /* AlbumCollection.swift in Sources */,
 				35DD05FD595A6FE7F5A0692D12E319DC /* UIImage+Diff.m in Sources */,
 				756564ABAF2892FE7140C92A1CDDCF65 /* UIImage+Snapshot.m in Sources */,
 			);
