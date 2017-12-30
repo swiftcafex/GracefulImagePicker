@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1087CDD91FF4A4A0008BD1C0 /* PickerContanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1087CDD81FF4A4A0008BD1C0 /* PickerContanerViewController.swift */; };
+		1087CDE01FF52B60008BD1C0 /* GracefulImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1087CDE11FF52B60008BD1C0 /* GracefulImagePicker.framework */; };
 		15AA4EAE9F651CB98837754A /* Pods_GracefulImagePicker_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8922D97D9062B0F8489B94 /* Pods_GracefulImagePicker_Tests.framework */; };
 		4F660DF5D2F5760E270EF27C /* Pods_GracefulImagePicker_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5907A1E7D06AF01B77EFA1F3 /* Pods_GracefulImagePicker_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -28,12 +30,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1E0B70FE3FC2F6576F45AB21 /* GracefulImagePicker.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = GracefulImagePicker.podspec; path = ../GracefulImagePicker.podspec; sourceTree = "<group>"; };
+		1087CDD81FF4A4A0008BD1C0 /* PickerContanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerContanerViewController.swift; sourceTree = "<group>"; };
+		1087CDE11FF52B60008BD1C0 /* GracefulImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GracefulImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E0B70FE3FC2F6576F45AB21 /* GracefulImagePicker.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GracefulImagePicker.podspec; path = ../GracefulImagePicker.podspec; sourceTree = "<group>"; };
 		1FA81333D82BB367364D2FF7 /* Pods-GracefulImagePicker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GracefulImagePicker_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GracefulImagePicker_Tests/Pods-GracefulImagePicker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		21F2A5C325E20A7335CA5EC6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		21F2A5C325E20A7335CA5EC6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		24278D4D258498B504625743 /* Pods-GracefulImagePicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GracefulImagePicker_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GracefulImagePicker_Example/Pods-GracefulImagePicker_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2B8922D97D9062B0F8489B94 /* Pods_GracefulImagePicker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GracefulImagePicker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35EE0391B045F2D1B40FADB1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		35EE0391B045F2D1B40FADB1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5907A1E7D06AF01B77EFA1F3 /* Pods_GracefulImagePicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GracefulImagePicker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* GracefulImagePicker_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GracefulImagePicker_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1087CDE01FF52B60008BD1C0 /* GracefulImagePicker.framework in Frameworks */,
 				4F660DF5D2F5760E270EF27C /* Pods_GracefulImagePicker_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +100,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				1087CDD81FF4A4A0008BD1C0 /* PickerContanerViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -142,6 +148,7 @@
 		6F4B52EA60CB18E00B304858 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1087CDE11FF52B60008BD1C0 /* GracefulImagePicker.framework */,
 				5907A1E7D06AF01B77EFA1F3 /* Pods_GracefulImagePicker_Example.framework */,
 				2B8922D97D9062B0F8489B94 /* Pods_GracefulImagePicker_Tests.framework */,
 			);
@@ -381,6 +388,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1087CDD91FF4A4A0008BD1C0 /* PickerContanerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

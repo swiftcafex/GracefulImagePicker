@@ -1,0 +1,6 @@
+framework module GracefulImagePicker {
+  umbrella header "GracefulImagePicker-umbrella.h"
+
+  export *
+  module * { export * }
+}
