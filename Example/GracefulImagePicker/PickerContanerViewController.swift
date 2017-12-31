@@ -18,7 +18,8 @@ class PickerContanerViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        let pickerView = GracefulImagePickerView()
+        let pickerView = GracefulImagePickerView(frame: CGRect.zero, style: .White)
+        
         pickerView.backClicked = {
             
             self.dismiss(animated: true, completion: nil)
@@ -46,7 +47,20 @@ class PickerContanerViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
-        self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+        var top = UIApplication.shared.statusBarFrame.size.height
+        var bottom = CGFloat(0)
+        
+        if #available(iOS 11.0, *) {
+            
+            top = self.view.safeAreaInsets.top
+            bottom = self.view.safeAreaInsets.bottom
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        self.imagePickerView?.frame = CGRect(x: 0, y: top, width: self.view.frame.size.width, height: self.view.frame.size.height - top - bottom)
         
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CircleProgressBar
 
 class ImageCollectionViewCell: UICollectionViewCell {
  
@@ -13,7 +14,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     var cloudView: UIImageView?
  
     var progressContainer: UIView?
-//    var progressBar: CircleProgressBar?
+    var progressBar: CircleProgressBar?
     
     var downloadCanceled = false    //是否已经取消， 用作 iCloud 下载
     
@@ -37,23 +38,24 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.progressContainer?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         self.addSubview(progressContainer)
         
-//        let progressBar = CircleProgressBar(frame: CGRect.zero)
-//        progressBar.setProgress(0.4, animated: false)
-//        progressBar.progressBarWidth = 2
-//        progressBar.startAngle = 270
-//        progressBar.progressBarTrackColor = UIColor.gray
-//        progressBar.progressBarProgressColor = UIColor.white
-//        progressBar.backgroundColor = UIColor.clear
-//        progressBar.hintTextColor = UIColor.white
-//        progressBar.hintTextFont = UIFont.systemFont(ofSize: 6)
-//        progressBar.hintViewBackgroundColor = UIColor.clear
-//        progressBar.setHintTextGenerationBlock { (progress) -> String? in
-//
-//            return "\(Int(progress * 100))"
-//
-//        }
-//        self.progressBar = progressBar
-//        progressContainer.addSubview(progressBar)
+        
+        let progressBar = CircleProgressBar(frame: CGRect.zero)
+        progressBar.setProgress(0.4, animated: false)
+        progressBar.progressBarWidth = 2
+        progressBar.startAngle = 270
+        progressBar.progressBarTrackColor = UIColor.gray
+        progressBar.progressBarProgressColor = UIColor.white
+        progressBar.backgroundColor = UIColor.clear
+        progressBar.hintTextColor = UIColor.white
+        progressBar.hintTextFont = UIFont.systemFont(ofSize: 6)
+        progressBar.hintViewBackgroundColor = UIColor.clear
+        progressBar.setHintTextGenerationBlock { (progress) -> String? in
+
+            return "\(Int(progress * 100))"
+
+        }
+        self.progressBar = progressBar
+        progressContainer.addSubview(progressBar)
         
     }
     
@@ -70,14 +72,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.cloudView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         
         self.progressContainer?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-//        self.progressBar?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        self.progressBar?.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        self.progressBar?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.progressBar?.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         
     }
     
     func setInCloud() {
         
-        self.cloudView?.image = UIImage(named: "in_cloud")
+        let frameworkBundle = Bundle(for: ImagePickerTitleView.self)
+        self.cloudView?.image = UIImage(named: "in_cloud", in: frameworkBundle, compatibleWith: nil)
         
     }
     

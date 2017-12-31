@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
     'GracefulImagePicker' => ['GracefulImagePicker/Assets/*.png']
   }
 
-# s.dependency 'CircleProgressBar', '~> 0.32’
+  s.dependency 'CircleProgressBar'
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 

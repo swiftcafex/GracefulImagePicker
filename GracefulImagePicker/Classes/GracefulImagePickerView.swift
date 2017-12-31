@@ -17,19 +17,25 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     var albumList = [AlbumCollection]()
     var assetResult: PHFetchResult<PHAsset>?
     
-    var titleView: ImagePickerTitleView?
+    public var titleView: ImagePickerTitleView?
     
     public var backClicked: (() -> Void)?
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
-    override init(frame: CGRect) {
+    override convenience init(frame: CGRect) {
+        
+        self.init(frame: frame, style: .Black)
+        
+    }
+    
+    public init(frame: CGRect, style: ImagePickerStyle) {
         
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white
         
         // Title View
-        let titleView = ImagePickerTitleView(frame: CGRect.zero)
+        let titleView = ImagePickerTitleView(frame: CGRect.zero, style: style)
         titleView.backClicked = {
             
             self.backClicked?()
@@ -85,9 +91,11 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         }
         
         self.titleView?.frame = CGRect(x: 0, y: top, width: self.frame.size.width, height: 40)
-        self.collectionView?.frame = CGRect(x: 0, y: top + 40,
+        
+        let collStartY = top + 40
+        self.collectionView?.frame = CGRect(x: 0, y: collStartY,
                                             width: self.frame.size.width,
-                                            height: self.frame.size.height)
+                                            height: self.frame.size.height - collStartY)
         
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
@@ -105,10 +113,12 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
             self.titleView?.titleLabel?.text = coll.localizedTitle
             self.assetResult = PHAsset.fetchAssets(in: coll, options: nil)
+        
+            self.collectionView?.reloadData()
+            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult!.count - 1, section: 0), at: UICollectionViewScrollPosition.bottom, animated: false)
             
         }
         
-        self.collectionView?.reloadData()
         
     }
     
@@ -256,7 +266,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                     if cell.downloadCanceled == false {
                         
                         cell.startLoadingMode()
-//                        cell.progressBar?.setProgress(CGFloat(progress), animated: false)
+                        cell.progressBar?.setProgress(CGFloat(progress), animated: false)
                         
                     }
                     
@@ -285,6 +295,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                 }
                 
                 if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
+                    
                     //恢复视图状态
                     cell.finishDownload()
                     cell.cancelLoadingMode()

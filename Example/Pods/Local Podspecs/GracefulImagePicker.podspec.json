@@ -1,9 +1,9 @@
 {
   "name": "GracefulImagePicker",
   "version": "0.1.0",
-  "summary": "A short description of GracefulImagePicker.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/SwiftCafe/GracefulImagePicker",
+  "summary": "A functional UI component for pick image on iOS.",
+  "description": "A functional UI component for pick image on iOS. .",
+  "homepage": "https://github.com/swiftcafex/GracefulImagePicker",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,22 @@
     "SwiftCafe": "swiftcafex@gmail.com"
   },
   "source": {
-    "git": "https://github.com/SwiftCafe/GracefulImagePicker.git",
+    "git": "https://github.com/swiftcafex/GracefulImagePicker.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "GracefulImagePicker/Classes/**/*"
+  "source_files": "GracefulImagePicker/Classes/**/*",
+  "resources": "GracefulImagePicker/Assets/*.png",
+  "resource_bundles": {
+    "GracefulImagePicker": [
+      "GracefulImagePicker/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "CircleProgressBar": [
+
+    ]
+  }
 }

@@ -7,27 +7,49 @@
 
 import UIKit
 
-class ImagePickerTitleView: UIView {
+public enum ImagePickerStyle: Int {
+    
+    case White = 1
+    case Black = 2
+    
+}
 
-    var titleLabel: UILabel?
-    var btnBack: UIButton?
+public class ImagePickerTitleView: UIView {
+
+    public var titleLabel: UILabel?
+    public var btnBack: UIButton?
     
     var backClicked: (() -> Void)?
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, style: ImagePickerStyle) {
         
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.black
+        
         
         let titleLabel = UILabel(frame: CGRect.zero)
-        titleLabel.textColor = UIColor.white
+        
         self.addSubview(titleLabel)
         self.titleLabel = titleLabel
         
         let btnBack = UIButton(frame: CGRect.zero)
         let frameworkBundle = Bundle(for: ImagePickerTitleView.self)
-        btnBack.setImage(UIImage(named: "picker_back", in: frameworkBundle, compatibleWith: nil), for: UIControlState.normal)
+        
+        if(style == ImagePickerStyle.Black) {
+            
+            self.backgroundColor = UIColor.black
+            btnBack.setImage(UIImage(named: "picker_back", in: frameworkBundle, compatibleWith: nil), for: UIControlState.normal)
+            titleLabel.textColor = UIColor.white
+            
+        } else {
+        
+            self.backgroundColor = UIColor.white
+            btnBack.setImage(UIImage(named: "picker_back_blk", in: frameworkBundle, compatibleWith: nil), for: UIControlState.normal)
+            titleLabel.textColor = UIColor.black
+            
+        }
+        
+        
         btnBack.addTarget(self, action: #selector(self.btnBackClicked), for: UIControlEvents.touchUpInside)
         
         self.addSubview(btnBack)
@@ -36,13 +58,13 @@ class ImagePickerTitleView: UIView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
         
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         
         super.layoutSubviews()
         self.titleLabel?.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
