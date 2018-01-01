@@ -54,7 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = "测试"
+        cell.textLabel?.text = "Present White Style"
         
         return cell
         
@@ -66,6 +66,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let nav = UINavigationController(rootViewController: picker)
         
         self.present(nav, animated: true, completion: nil)
+        
+        tableView.deselectRow(at: indexPath, animated: false)
         
     }
     

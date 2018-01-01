@@ -79,8 +79,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     func setInCloud() {
         
-        let frameworkBundle = Bundle(for: ImagePickerTitleView.self)
-        self.cloudView?.image = UIImage(named: "in_cloud", in: frameworkBundle, compatibleWith: nil)
+        self.cloudView?.image = ImageLoader.image(named: "in_cloud")
         
     }
     

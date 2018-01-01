@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class AlbumCollection {
+public class AlbumCollection {
     
     var collection: PHAssetCollection?
     

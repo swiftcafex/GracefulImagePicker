@@ -19,6 +19,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     public var titleView: ImagePickerTitleView?
     
+    var albumListView: AlbumListView?
+    
     public var backClicked: (() -> Void)?
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
@@ -33,17 +35,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white
-        
-        // Title View
-        let titleView = ImagePickerTitleView(frame: CGRect.zero, style: style)
-        titleView.backClicked = {
-            
-            self.backClicked?()
-            
-        }
-        self.addSubview(titleView)
-        self.titleView = titleView
-        
         
         
         // Collection View
@@ -64,6 +55,43 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         
         self.collectionView = collectionView
+        
+        let albumListView = AlbumListView(frame: CGRect.zero)
+        albumListView.callbackAlbumChanged = { album in
+            
+            self.loadPhotos(album: album)
+            self.hideAlbumList()
+            self.titleView?.changeToOpen()
+            
+        }
+    
+        self.addSubview(albumListView)
+        
+        self.albumListView = albumListView
+        
+        
+        // Title View
+        let titleView = ImagePickerTitleView(frame: CGRect.zero, style: style)
+        
+        titleView.callbackCloseAlbum = {
+            
+            self.hideAlbumList()
+            
+        }
+        
+        titleView.callbackOpenAlbum = {
+            
+            self.showAlbumList()
+            
+        }
+        
+        titleView.backClicked = {
+            
+            self.backClicked?()
+            
+        }
+        self.addSubview(titleView)
+        self.titleView = titleView
         
     }
     
@@ -90,15 +118,39 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         }
         
-        self.titleView?.frame = CGRect(x: 0, y: top, width: self.frame.size.width, height: 40)
+        self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40)
         
-        let collStartY = top + 40
+        let collStartY = top + self.titleView!.frame.size.height
+        
         self.collectionView?.frame = CGRect(x: 0, y: collStartY,
                                             width: self.frame.size.width,
                                             height: self.frame.size.height - collStartY)
         
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
+        
+    }
+    
+    func showAlbumList() {
+    
+        self.albumListView?.frame = CGRect(x: 0, y: self.collectionView!.frame.origin.y, width: self.collectionView!.frame.width, height: 0)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            self.albumListView?.frame = CGRect(x: 0, y: self.collectionView!.frame.origin.y, width: self.collectionView!.frame.width, height: self.collectionView!.frame.height)
+            
+        })
+        
+        
+    }
+    
+    func hideAlbumList() {
+     
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            self.albumListView?.frame = CGRect(x: 0, y: self.collectionView!.frame.origin.y, width: self.collectionView!.frame.width, height: 0)
+            
+        })
         
     }
     
@@ -109,16 +161,22 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.loadAlbums()
         
-        if let coll = self.albumList.first?.collection {
+        self.albumListView?.bindAlbums(albumList: self.albumList)
+        loadPhotos(album: self.albumList.first)
+        
+    }
+    
+    func loadPhotos(album: AlbumCollection?) {
+        
+        if let coll = album?.collection {
             
             self.titleView?.titleLabel?.text = coll.localizedTitle
             self.assetResult = PHAsset.fetchAssets(in: coll, options: nil)
-        
+            
             self.collectionView?.reloadData()
             self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult!.count - 1, section: 0), at: UICollectionViewScrollPosition.bottom, animated: false)
             
         }
-        
         
     }
     
