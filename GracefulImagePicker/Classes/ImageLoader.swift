@@ -10,6 +10,7 @@ import UIKit
 
 class ImageLoader {
     
+    // load image from framework bundle
     static func image(named: String) -> UIImage? {
         
         let frameworkBundle = Bundle(for: ImageLoader.self)

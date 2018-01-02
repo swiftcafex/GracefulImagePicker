@@ -25,7 +25,7 @@ class AlbumListView: UIView, UITableViewDelegate, UITableViewDataSource {
         let tableView = UITableView(frame: CGRect.zero)
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.separatorColor = UIColor(red: 50, green: 50, blue: 50, alpha: 0.8)
+        tableView.separatorColor = UIColor(red: 230.0 / 255.0, green: 230.0 / 255.0, blue: 230.0 / 255.0, alpha: 1.0)
         tableView.register(AlbumItemTableViewCell.self, forCellReuseIdentifier: "Cell")
         self.addSubview(tableView)
         

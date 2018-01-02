@@ -21,22 +21,23 @@ class PhotoAsset: NSObject {
         detectOption.isSynchronous = true
         
         PHImageManager.default().requestImageData(for: asset, options: detectOption) { (data, uti, orientation, info) in
-            
+
             if info?[PHImageResultIsInCloudKey] as? Bool == true {
-                
+
                 if data == nil {
-                    
+
                     callback(true)
-                    
+
                 }
-                
+
             } else {
-                
+
                 callback(false)
-                
+
             }
-            
+
         }
+        
         
     }
     

@@ -10,35 +10,38 @@ import CircleProgressBar
 
 class ImageCollectionViewCell: UICollectionViewCell {
  
-    var imageView: UIImageView?
-    var cloudView: UIImageView?
+    var imageView: UIImageView?             // image view
+    var cloudView: UIImageView?             // icloud tag
  
-    var progressContainer: UIView?
-    var progressBar: CircleProgressBar?
+    var progressContainer: UIView?          // container for progress view
+    var progressBar: CircleProgressBar?     // progress view used to display download.
     
-    var downloadCanceled = false    
+    var downloadCanceled = false            // indicate whether the downloading task with this cell canceled.
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         
+        // init image view
         let imageView = UIImageView(frame: CGRect.zero)
         self.imageView = imageView
         self.imageView?.contentMode = .scaleAspectFill
         self.imageView?.clipsToBounds = true
         self.addSubview(imageView)
         
+        // init iCloud tag
         let cloudView = UIImageView(frame: CGRect.zero)
         self.cloudView = cloudView
         self.addSubview(cloudView)
         
+        // init progress view container
         let progressContainer = UIView(frame: CGRect.zero)
         self.progressContainer = progressContainer
         progressContainer.isHidden = true
         self.progressContainer?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         self.addSubview(progressContainer)
         
-        
+        // init progress view
         let progressBar = CircleProgressBar(frame: CGRect.zero)
         progressBar.setProgress(0.4, animated: false)
         progressBar.progressBarWidth = 2
@@ -68,6 +71,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         
         super.layoutSubviews()
+        
         self.imageView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.cloudView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         

@@ -8,6 +8,7 @@
 import UIKit
 import CoreGraphics
 
+// picker color style
 public enum ImagePickerStyle: Int {
     
     case White = 1
@@ -15,31 +16,33 @@ public enum ImagePickerStyle: Int {
     
 }
 
-public class ImagePickerTitleView: UIView {
+class ImagePickerTitleView: UIView {
 
-    public var titleLabel: UILabel?
-    public var btnBack: UIButton?
+    public var titleLabel: UILabel?     // album title label
+    public var btnBack: UIButton?       // go back button
     
-    var btnAlbum: UIButton?
-    var imageOpenAlbum : String?
-    var imageCloseAlbum : String?
+    var btnAlbum: UIButton?             // album open button
     
-    var backClicked: (() -> Void)?
+    var imageOpenAlbum : String?        // open button image name
+    var imageCloseAlbum : String?       // close button image name
     
-    var albumOpened = false
+    var albumOpened = false             // button state
     
-    var callbackOpenAlbum : (() -> Void)?
-    var callbackCloseAlbum : (() -> Void)?
+    var backClicked: (() -> Void)?              // callback for go back button
+    var callbackOpenAlbum : (() -> Void)?       // callback for open album
+    var callbackCloseAlbum : (() -> Void)?      // callback for close album
     
     init(frame: CGRect, style: ImagePickerStyle) {
         
         super.init(frame: frame)
         
+        // shadow effect
         self.layer.shadowRadius = 2
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOpacity = 0.3
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
         
+        // init title view
         let titleTap = UITapGestureRecognizer(target: self, action: #selector(self.albumOpenClicked))
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.isUserInteractionEnabled = true
@@ -48,6 +51,7 @@ public class ImagePickerTitleView: UIView {
         self.addSubview(titleLabel)
         self.titleLabel = titleLabel
         
+        // init gobcck button
         let btnBack = UIButton(frame: CGRect.zero)
         
         if(style == ImagePickerStyle.Black) {
@@ -73,6 +77,7 @@ public class ImagePickerTitleView: UIView {
         
         self.btnBack = btnBack
         
+        // init album button
         if(style == ImagePickerStyle.Black) {
             
             self.imageOpenAlbum = "btn_open_album"
@@ -156,6 +161,9 @@ public class ImagePickerTitleView: UIView {
         
     }
     
+    // MARK: change album button state
+    
+    // to open
     func changeToOpen() {
      
         self.albumOpened = false
@@ -163,6 +171,7 @@ public class ImagePickerTitleView: UIView {
         
     }
     
+    // to close
     func changeToHide() {
         
         self.albumOpened = true

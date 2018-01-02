@@ -19,7 +19,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     var albumList = [AlbumCollection]()
     var assetResult = [PhotoAsset]()
     
-    public var titleView: ImagePickerTitleView?
+    var titleView: ImagePickerTitleView?
     
     var albumListView: AlbumListView?
     
@@ -32,7 +32,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
-    public init(frame: CGRect, style: ImagePickerStyle) {
+    public init(frame: CGRect, style: ImagePickerStyle, config: ImagePickerConfiguration = ImagePickerConfiguration()) {
         
         super.init(frame: frame)
         
@@ -52,8 +52,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor.white
-//        collectionView.backgroundColor = UIColor("#f9f9f9")
+        collectionView.backgroundColor = UIColor(red: 249.0 / 255.0, green: 249.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         
         self.collectionView = collectionView

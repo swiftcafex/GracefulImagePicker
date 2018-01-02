@@ -9,18 +9,21 @@
 import UIKit
 import Photos
 
-public class AlbumCollection {
+class AlbumCollection {
     
     var collection: PHAssetCollection?
     
-    var cachedImage: UIImage?
-    var cachedCount: Int?
+    private var cachedImage: UIImage?       // cached thumbnail image
+    private var cachedCount: Int?           // cached photo count
     
+    // get photo count
     func getPhotoCount() -> Int {
         
         // if photo count already fetched.
         if let cached = cachedCount {
+            
             return cached
+            
         }
         
         if let coll = self.collection {
@@ -38,6 +41,7 @@ public class AlbumCollection {
         
     }
     
+    //get thumbnail image
     func getThumbImage(callback: @escaping (UIImage?) -> Void) {
         
         if let cached = self.cachedImage {

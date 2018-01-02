@@ -68,6 +68,8 @@
 		107085771FFA831B0033158F /* AlbumItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107085751FFA831B0033158F /* AlbumItemTableViewCell.swift */; };
 		107085791FFAA1ED0033158F /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107085781FFAA1ED0033158F /* PhotoAsset.swift */; };
 		1070857A1FFAA1ED0033158F /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107085781FFAA1ED0033158F /* PhotoAsset.swift */; };
+		1070857C1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */; };
+		1070857D1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */; };
 		11FE52B014F1F0483A51C8E9970F826B /* GracefulImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC30BFCE3951B009C64FE498554DABE /* GracefulImagePickerViewController.swift */; };
 		11FFE53DA5009D9DA24E4858632D19DB /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905698FA4F7F4B58E4680317B88591C /* Closures.swift */; };
 		14A0B914C8A7F8EEE1317349A990C581 /* CircleProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F4F33EDB2EEF494098B0D705BD8947 /* CircleProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -342,6 +344,7 @@
 		107085711FFA1BF80033158F /* AlbumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumListView.swift; path = GracefulImagePicker/Classes/AlbumListView.swift; sourceTree = "<group>"; };
 		107085751FFA831B0033158F /* AlbumItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumItemTableViewCell.swift; path = GracefulImagePicker/Classes/AlbumItemTableViewCell.swift; sourceTree = "<group>"; };
 		107085781FFAA1ED0033158F /* PhotoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoAsset.swift; path = GracefulImagePicker/Classes/PhotoAsset.swift; sourceTree = "<group>"; };
+		1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagePickerConfiguration.swift; path = GracefulImagePicker/Classes/ImagePickerConfiguration.swift; sourceTree = "<group>"; };
 		10D7BBE3F57D9AB85DF15A2E16BD5279 /* Stringers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stringers.swift; path = Sources/Nimble/Utils/Stringers.swift; sourceTree = "<group>"; };
 		121E89248F6AFD7F4BC61298B177F0FF /* mach_excServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mach_excServer.h; path = Sources/Lib/CwlPreconditionTesting/CwlMachBadInstructionHandler/mach_excServer.h; sourceTree = "<group>"; };
 		12389AC06168CAD15A0948408B1C5B5F /* Nimble-Snapshots-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-Snapshots-umbrella.h"; sourceTree = "<group>"; };
@@ -645,6 +648,7 @@
 		268990EC86C0582494803C28F875A265 /* GracefulImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */,
 				1070856E1FFA14B80033158F /* ImageLoader.swift */,
 				7B9882E7304AE5D1091586E0FB700585 /* AlbumCollection.swift */,
 				107085781FFAA1ED0033158F /* PhotoAsset.swift */,
@@ -1539,6 +1543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1070856F1FFA14B80033158F /* ImageLoader.swift in Sources */,
+				1070857C1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */,
 				26950538F004BE0F3C2955D47CFD5125 /* AlbumCollection.swift in Sources */,
 				17A91CBB9E85759C80742814AA2908C2 /* GracefulImagePicker-dummy.m in Sources */,
 				107085791FFAA1ED0033158F /* PhotoAsset.swift in Sources */,
@@ -1588,6 +1593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1070857D1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */,
 				107085741FFA82FE0033158F /* AlbumCollection.swift in Sources */,
 				107085731FFA1BF80033158F /* AlbumListView.swift in Sources */,
 				107085771FFA831B0033158F /* AlbumItemTableViewCell.swift in Sources */,

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class GracefulImagePickerViewController: UIViewController {
+public class GracefulImagePickerViewController: UIViewController {
 
     var imagePickerView: GracefulImagePickerView?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         
         super.viewDidLoad()
 
@@ -22,14 +22,14 @@ class GracefulImagePickerViewController: UIViewController {
         
     }
     
-    override func viewWillLayoutSubviews() {
+    public override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
         self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
     }
 
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
