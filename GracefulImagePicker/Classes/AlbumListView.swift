@@ -31,7 +31,7 @@ class AlbumListView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.tableView = tableView
         
-        self.autoresizingMask = .flexibleHeight        
+        self.autoresizingMask = .flexibleHeight
         
     }
     

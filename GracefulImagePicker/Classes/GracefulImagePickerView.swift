@@ -2,7 +2,7 @@
 //  GracefulImagePickerView.swift
 //  Pods
 //
-//  Created by marspro on 2017/12/28.
+//  Created by swiftcafe on 2017/12/28.
 //
 
 import UIKit
@@ -97,6 +97,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.addSubview(titleView)
         self.titleView = titleView
+        
+        self.reload()
         
     }
     
@@ -266,11 +268,13 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         let photoAsset = self.assetResult[indexPath.row]
         
+        cell.cleariCloudTag()
+        
         photoAsset.isInCloud { (incloud) in
             
             if incloud {
                 
-                cell.setInCloud()
+                cell.showiCloudTag()
                 
             }
             
@@ -306,7 +310,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                 if let cell = collectionView.cellForItem(at: loadingIndexPath) as? ImageCollectionViewCell {
                     //恢复视图状态
                     cell.downloadCanceled = true
-                    cell.cancelLoadingMode()
+                    cell.hideDownloadProgressView()
                     
                 }
                 
@@ -334,7 +338,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                     
                     if cell.downloadCanceled == false {
                         
-                        cell.startLoadingMode()
+                        cell.showDownloadProgressView()
                         cell.progressBar?.setProgress(CGFloat(progress), animated: false)
                         
                     }
@@ -366,8 +370,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                 if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
                     
                     //恢复视图状态
-                    cell.finishDownload()
-                    cell.cancelLoadingMode()
+                    cell.cleariCloudTag()
+                    cell.hideDownloadProgressView()
                     
                 }
                 

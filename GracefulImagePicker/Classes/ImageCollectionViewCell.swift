@@ -16,7 +16,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     var progressContainer: UIView?
     var progressBar: CircleProgressBar?
     
-    var downloadCanceled = false    //是否已经取消， 用作 iCloud 下载
+    var downloadCanceled = false    
     
     override init(frame: CGRect) {
         
@@ -77,27 +77,34 @@ class ImageCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setInCloud() {
+    // MARK: handle iCloud tag display.
+    
+    // show icloud tag
+    func showiCloudTag() {
         
         self.cloudView?.image = ImageLoader.image(named: "in_cloud")
         
     }
     
-    func finishDownload() {
+    // clear icloud tag
+    func cleariCloudTag() {
         
         self.cloudView?.image = nil
-    }
+        
+    }    
     
-    //开始加载模式， 显示下载进度条
-    func startLoadingMode() {
+    // MARK: handle iCloud download progress.
+    
+    // show download progress view.
+    func showDownloadProgressView() {
         
         self.progressContainer?.isHidden = false
         self.cloudView?.isHidden = true
         
     }
     
-    //取消加载模式
-    func cancelLoadingMode() {
+    // hide download progress view.
+    func hideDownloadProgressView() {
         
         self.progressContainer?.isHidden = true
         self.cloudView?.isHidden = false

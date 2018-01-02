@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var tableView: UITableView?
     
+    var cellTitleList = ["Present White Style", "Present Black Style"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,18 +45,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: UITableView Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        return self.cellTitleList.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = "Present White Style"
+        cell.textLabel?.text = self.cellTitleList[indexPath.row]
         
         return cell
         
@@ -62,10 +68,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let picker = PickerContanerViewController()
-        let nav = UINavigationController(rootViewController: picker)
+        if indexPath.row == 0 {
         
-        self.present(nav, animated: true, completion: nil)
+            let picker = PickerContanerViewController()
+            let nav = UINavigationController(rootViewController: picker)
+            self.present(nav, animated: true, completion: nil)
+            
+        } else if indexPath.row == 1 {
+            
+            let picker = PickerContanerViewController()
+            picker.pickerStyle = .Black
+            let nav = UINavigationController(rootViewController: picker)
+            self.present(nav, animated: true, completion: nil)
+            
+        }
+        
         
         tableView.deselectRow(at: indexPath, animated: false)
         

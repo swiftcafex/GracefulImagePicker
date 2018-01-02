@@ -109,9 +109,9 @@ public class ImagePickerTitleView: UIView {
             if let labelText = self.titleLabel?.text {
                 
                 let size = (labelText as NSString).size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
-                print("text size: \(size)")
                 titleLabel.frame = CGRect(x: 0, y: 0, width: size.width, height: 30)
                 titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+                
             }
         
             if titleLabel.text != nil {

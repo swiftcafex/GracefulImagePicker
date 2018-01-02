@@ -13,12 +13,14 @@ class PickerContanerViewController: UIViewController {
 
     var imagePickerView : GracefulImagePickerView?
     
+    var pickerStyle = ImagePickerStyle.White
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        let pickerView = GracefulImagePickerView(frame: CGRect.zero, style: .White)
+        let pickerView = GracefulImagePickerView(frame: CGRect.zero, style: pickerStyle)
         
         pickerView.backClicked = {
             
@@ -36,6 +38,8 @@ class PickerContanerViewController: UIViewController {
         self.imagePickerView = pickerView
         
         self.navigationController?.navigationBar.isHidden = true
+        
+//        self.imagePickerView?.reload()
         
     }
 
@@ -67,7 +71,7 @@ class PickerContanerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.imagePickerView?.reload()
+        
         
     }
     
