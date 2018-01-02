@@ -70,6 +70,7 @@
 		1070857A1FFAA1ED0033158F /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107085781FFAA1ED0033158F /* PhotoAsset.swift */; };
 		1070857C1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */; };
 		1070857D1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */; };
+		1070857E1FFB6AC30033158F /* ImagePickerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00D9EB02655528337A3E63ABC5FFD9A /* ImagePickerTitleView.swift */; };
 		11FE52B014F1F0483A51C8E9970F826B /* GracefulImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC30BFCE3951B009C64FE498554DABE /* GracefulImagePickerViewController.swift */; };
 		11FFE53DA5009D9DA24E4858632D19DB /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905698FA4F7F4B58E4680317B88591C /* Closures.swift */; };
 		14A0B914C8A7F8EEE1317349A990C581 /* CircleProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F4F33EDB2EEF494098B0D705BD8947 /* CircleProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1599,6 +1600,7 @@
 				107085771FFA831B0033158F /* AlbumItemTableViewCell.swift in Sources */,
 				1070857A1FFAA1ED0033158F /* PhotoAsset.swift in Sources */,
 				107085701FFA14B80033158F /* ImageLoader.swift in Sources */,
+				1070857E1FFB6AC30033158F /* ImagePickerTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2179,7 +2181,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -2316,7 +2318,7 @@
 				PRODUCT_NAME = GracefulImagePicker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};

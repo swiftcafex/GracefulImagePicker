@@ -12,34 +12,43 @@ import GracefulImagePicker
 class PickerContanerViewController: UIViewController {
 
     var imagePickerView : GracefulImagePickerView?
-    
-    var pickerStyle = ImagePickerStyle.White
+    var pickerConfig: ImagePickerConfiguration?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        let pickerView = GracefulImagePickerView(frame: CGRect.zero, style: pickerStyle)
+        var pickerView: GracefulImagePickerView?
         
-        pickerView.backClicked = {
+        if let config = self.pickerConfig {
+        
+            pickerView = GracefulImagePickerView(frame: CGRect.zero, config: config)
+            
+        } else {
+            
+            pickerView = GracefulImagePickerView(frame: CGRect.zero)
+            
+        }
+        
+        
+        pickerView?.backClicked = {
             
             self.dismiss(animated: true, completion: nil)
             
         }
-        pickerView.imageSelected = { image, asset in
+        
+        pickerView?.imageSelected = { image, asset in
             
             let resultView = ImageSelectedViewController()
             resultView.image = image
             self.navigationController?.pushViewController(resultView, animated: true)
             
         }
-        self.view.addSubview(pickerView)
+        self.view.addSubview(pickerView!)
         self.imagePickerView = pickerView
         
         self.navigationController?.navigationBar.isHidden = true
-        
-//        self.imagePickerView?.reload()
         
     }
 
@@ -81,6 +90,11 @@ class PickerContanerViewController: UIViewController {
         
     }
 
+    override var prefersStatusBarHidden: Bool {
+        
+        return true
+        
+    }
     /*
     // MARK: - Navigation
 

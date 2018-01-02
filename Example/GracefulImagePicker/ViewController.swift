@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import GracefulImagePicker
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var tableView: UITableView?
     
-    var cellTitleList = ["Present White Style", "Present Black Style"]
+    var cellTitleList = ["Present White Style", "Present Black Style", "Push White Style", "Push Black Black", "Push Black Black And Reverse"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,16 +71,64 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if indexPath.row == 0 {
         
+            // default white style
             let picker = PickerContanerViewController()
             let nav = UINavigationController(rootViewController: picker)
             self.present(nav, animated: true, completion: nil)
             
         } else if indexPath.row == 1 {
             
+            // black style
+            
             let picker = PickerContanerViewController()
-            picker.pickerStyle = .Black
+            let config = ImagePickerConfiguration()
+            config.style = .Black
+            picker.pickerConfig = config
             let nav = UINavigationController(rootViewController: picker)
             self.present(nav, animated: true, completion: nil)
+            
+        } else if indexPath.row == 2 {
+            
+            let pickerController = GracefulImagePickerViewController()
+            pickerController.imageSelected = { image, asset in
+                
+                let resultView = ImageSelectedViewController()
+                resultView.image = image
+                self.navigationController?.pushViewController(resultView, animated: true)
+                
+            }
+            self.navigationController?.pushViewController(pickerController, animated: true)
+            
+        } else if indexPath.row == 3 {
+            
+            let config = ImagePickerConfiguration()
+            config.style = .Black
+            
+            let pickerController = GracefulImagePickerViewController(config: config)
+            pickerController.imageSelected = { image, asset in
+                
+                let resultView = ImageSelectedViewController()
+                resultView.image = image
+                self.navigationController?.pushViewController(resultView, animated: true)
+                
+            }
+            self.navigationController?.pushViewController(pickerController, animated: true)
+            
+        } else if indexPath.row == 4 {
+            
+            let config = ImagePickerConfiguration()
+            config.style = .Black
+            config.reverseImageList = true
+            
+            let pickerController = GracefulImagePickerViewController(config: config)
+            pickerController.imageSelected = { image, asset in
+                
+                let resultView = ImageSelectedViewController()
+                resultView.image = image
+                self.navigationController?.pushViewController(resultView, animated: true)
+                
+            }
+            self.navigationController?.pushViewController(pickerController, animated: true)
             
         }
         

@@ -16,8 +16,12 @@ class ImageSelectedViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = true
+        
         let imageView = UIImageView(frame: CGRect.zero)
         imageView.image = self.image
+        imageView.contentMode = .scaleAspectFit
         self.view.addSubview(imageView)
         
         self.imageView = imageView
@@ -34,6 +38,11 @@ class ImageSelectedViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+    override var prefersStatusBarHidden: Bool {
+        
+        return true
+        
+    }
 
 }

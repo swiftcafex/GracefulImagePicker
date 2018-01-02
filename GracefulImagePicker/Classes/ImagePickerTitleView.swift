@@ -122,7 +122,7 @@ class ImagePickerTitleView: UIView {
             if titleLabel.text != nil {
              
                 self.btnAlbum?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 20, y: self.frame.size.height / 2)
+                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 15, y: self.frame.size.height / 2)
                 
             }
             

@@ -26,18 +26,15 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     public var backClicked: (() -> Void)?
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
-    override convenience init(frame: CGRect) {
-        
-        self.init(frame: frame, style: .Black)
-        
-    }
+    var pickerConfig: ImagePickerConfiguration?
     
-    public init(frame: CGRect, style: ImagePickerStyle, config: ImagePickerConfiguration = ImagePickerConfiguration()) {
+    public init(frame: CGRect, config: ImagePickerConfiguration = ImagePickerConfiguration()) {
         
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.white
+        self.pickerConfig = config
         
+        self.backgroundColor = UIColor.white
         
         // Collection View
         let collectionLayout = UICollectionViewFlowLayout()
@@ -73,7 +70,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         
         // Title View
-        let titleView = ImagePickerTitleView(frame: CGRect.zero, style: style)
+        let titleView = ImagePickerTitleView(frame: CGRect.zero, style: config.style)
         
         titleView.callbackCloseAlbum = {
             
@@ -176,8 +173,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     func loadPhotos(album: AlbumCollection?) {
         
-        
-        
         if let coll = album?.collection {
         
             self.currentAlbum = album
@@ -185,7 +180,15 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             self.titleView?.titleLabel?.text = coll.localizedTitle
             self.titleView?.setNeedsLayout()
             
-            let fetchResult = PHAsset.fetchAssets(in: coll, options: nil)
+            let fetchOptions = PHFetchOptions()
+            
+            if self.pickerConfig!.reverseImageList {
+                
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+                
+            }
+            
+            let fetchResult = PHAsset.fetchAssets(in: coll, options: fetchOptions)
             
             self.assetResult.removeAll()
             
