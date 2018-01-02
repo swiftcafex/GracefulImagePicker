@@ -71,7 +71,7 @@
 		1070857C1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */; };
 		1070857D1FFB5B100033158F /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1070857B1FFB5B100033158F /* ImagePickerConfiguration.swift */; };
 		1070857E1FFB6AC30033158F /* ImagePickerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00D9EB02655528337A3E63ABC5FFD9A /* ImagePickerTitleView.swift */; };
-		11FE52B014F1F0483A51C8E9970F826B /* GracefulImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC30BFCE3951B009C64FE498554DABE /* GracefulImagePickerViewController.swift */; };
+		1070857F1FFB863B0033158F /* GracefulImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC30BFCE3951B009C64FE498554DABE /* GracefulImagePickerViewController.swift */; };
 		11FFE53DA5009D9DA24E4858632D19DB /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905698FA4F7F4B58E4680317B88591C /* Closures.swift */; };
 		14A0B914C8A7F8EEE1317349A990C581 /* CircleProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F4F33EDB2EEF494098B0D705BD8947 /* CircleProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1592E7C3059060DAA3A6D976250E7FD9 /* CircleProgressBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5DF09CB5843DFDDA4CAC33F829E45F0 /* CircleProgressBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1550,7 +1550,7 @@
 				107085791FFAA1ED0033158F /* PhotoAsset.swift in Sources */,
 				5AA3C66DF09CBE910BC4B2D05F16A81E /* GracefulImagePickerView.swift in Sources */,
 				107085761FFA831B0033158F /* AlbumItemTableViewCell.swift in Sources */,
-				11FE52B014F1F0483A51C8E9970F826B /* GracefulImagePickerViewController.swift in Sources */,
+				1070857F1FFB863B0033158F /* GracefulImagePickerViewController.swift in Sources */,
 				A8D3F058A771372BAAFCCA4F38EB34A8 /* ImageCollectionViewCell.swift in Sources */,
 				107085721FFA1BF80033158F /* AlbumListView.swift in Sources */,
 				8CF3B83221B1ECA8A3DAF2B953A7E98B /* ImagePickerTitleView.swift in Sources */,
