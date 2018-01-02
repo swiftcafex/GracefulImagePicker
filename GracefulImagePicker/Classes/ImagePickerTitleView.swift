@@ -103,15 +103,32 @@ public class ImagePickerTitleView: UIView {
     public override func layoutSubviews() {
         
         super.layoutSubviews()
-        self.titleLabel?.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
-        self.titleLabel?.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         
-        self.btnAlbum?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        self.btnAlbum?.center = CGPoint(x: self.titleLabel!.frame.origin.x + self.titleLabel!.frame.size.width, y: self.frame.size.height / 2)
+        if let titleLabel = self.titleLabel {
         
-        self.btnBack?.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        self.btnBack?.center = CGPoint(x: self.btnBack!.frame.size.width / 2 + 8, y: self.frame.size.height / 2)
+            if let labelText = self.titleLabel?.text {
+                
+                let size = (labelText as NSString).size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
+                print("text size: \(size)")
+                titleLabel.frame = CGRect(x: 0, y: 0, width: size.width, height: 30)
+                titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+            }
         
+            if titleLabel.text != nil {
+             
+                self.btnAlbum?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 20, y: self.frame.size.height / 2)
+                
+            }
+            
+        }
+        
+        if let btnBack = self.btnBack {
+        
+            btnBack.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+            btnBack.center = CGPoint(x: btnBack.frame.size.width / 2 + 8, y: self.frame.size.height / 2)
+            
+        }
         
     }
     

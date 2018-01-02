@@ -13,11 +13,14 @@ class AlbumListView: UIView, UITableViewDelegate, UITableViewDataSource {
     var tableView: UITableView?
     
     var callbackAlbumChanged : ((AlbumCollection) -> Void)?
+    var selectedAlbum: AlbumCollection?
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
+        
+        self.clipsToBounds = true 
         
         let tableView = UITableView(frame: CGRect.zero)
         tableView.dataSource = self
@@ -27,6 +30,8 @@ class AlbumListView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.addSubview(tableView)
         
         self.tableView = tableView
+        
+        self.autoresizingMask = .flexibleHeight        
         
     }
     
@@ -66,7 +71,21 @@ class AlbumListView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let album = self.albumList[indexPath.row]
+        
         (cell as? AlbumItemTableViewCell)?.bindAlbum(album: album)
+        
+        (cell as? AlbumItemTableViewCell)?.clearSelected()
+        
+        if let selectedAlbum = self.selectedAlbum {
+            
+            if selectedAlbum.collection == album.collection {
+             
+                (cell as? AlbumItemTableViewCell)?.setIsSelected()
+                
+            }
+            
+        }
+        
         
         return cell
         

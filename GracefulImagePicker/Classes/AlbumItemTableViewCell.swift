@@ -83,5 +83,19 @@ class AlbumItemTableViewCell: UITableViewCell {
         self.numberLabel?.text = "\(album.getPhotoCount())"
         
     }
+    
+    func setIsSelected() {
+        
+        self.titleLabel?.textColor = UIColor(red: 148.0 / 255.0, green: 208.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
+        self.numberLabel?.textColor = UIColor(red: 148.0 / 255.0, green: 208.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0)
+        
+    }
+    
+    func clearSelected() {
+        
+        self.titleLabel?.textColor = UIColor.darkGray
+        self.numberLabel?.textColor = UIColor.darkGray
+        
+    }
 
 }

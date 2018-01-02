@@ -14,8 +14,10 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     var collectionLayout : UICollectionViewFlowLayout?
     var sizeWidth: CGFloat = 0.0
     
+    var currentAlbum : AlbumCollection?
+    
     var albumList = [AlbumCollection]()
-    var assetResult: PHFetchResult<PHAsset>?
+    var assetResult = [PhotoAsset]()
     
     public var titleView: ImagePickerTitleView?
     
@@ -59,6 +61,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         let albumListView = AlbumListView(frame: CGRect.zero)
         albumListView.callbackAlbumChanged = { album in
             
+            // change 
             self.loadPhotos(album: album)
             self.hideAlbumList()
             self.titleView?.changeToOpen()
@@ -90,6 +93,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             self.backClicked?()
             
         }
+        
+        
         self.addSubview(titleView)
         self.titleView = titleView
         
@@ -133,6 +138,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     func showAlbumList() {
     
+        self.albumListView?.selectedAlbum = self.currentAlbum
         self.albumListView?.frame = CGRect(x: 0, y: self.collectionView!.frame.origin.y, width: self.collectionView!.frame.width, height: 0)
         
         UIView.animate(withDuration: 0.3, animations: {
@@ -141,6 +147,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         })
         
+        self.albumListView?.tableView?.reloadData()
         
     }
     
@@ -168,13 +175,29 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     func loadPhotos(album: AlbumCollection?) {
         
+        
+        
         if let coll = album?.collection {
+        
+            self.currentAlbum = album
             
             self.titleView?.titleLabel?.text = coll.localizedTitle
-            self.assetResult = PHAsset.fetchAssets(in: coll, options: nil)
+            self.titleView?.setNeedsLayout()
+            
+            let fetchResult = PHAsset.fetchAssets(in: coll, options: nil)
+            
+            self.assetResult.removeAll()
+            
+            fetchResult.enumerateObjects({ (asset, index, stop) in
+                
+                let photoAsset = PhotoAsset()
+                photoAsset.asset = asset
+                self.assetResult.append(photoAsset)
+                
+            })
             
             self.collectionView?.reloadData()
-            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult!.count - 1, section: 0), at: UICollectionViewScrollPosition.bottom, animated: false)
+            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult.count - 1, section: 0), at: UICollectionViewScrollPosition.bottom, animated: false)
             
         }
         
@@ -233,7 +256,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return self.assetResult?.count ?? 0
+        return self.assetResult.count
         
     }
     
@@ -241,32 +264,20 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImageCollectionViewCell
         
-        guard let asset = self.assetResult?[indexPath.row] else { return cell }
+        let photoAsset = self.assetResult[indexPath.row]
         
-        //检测 是否图片在 iCloud 中， 并且还没有下载到本地。 如果是，显示云彩标签
-        let detectOption = PHImageRequestOptions()
-        detectOption.isNetworkAccessAllowed = false
-        detectOption.isSynchronous = true
-        
-        PHImageManager.default().requestImageData(for: asset, options: detectOption) { (data, uti, orientation, info) in
+        photoAsset.isInCloud { (incloud) in
             
-            if info?[PHImageResultIsInCloudKey] as? Bool == true {
-                if data == nil {
-                    
-                    cell.setInCloud()
-                    
-                }
+            if incloud {
+                
+                cell.setInCloud()
+                
             }
             
         }
         
+        photoAsset.getThumbnail(sizeWidth: self.sizeWidth) { (image) in
         
-        //请求缩略图
-        let options = PHImageRequestOptions()
-        options.resizeMode = .fast
-        options.isSynchronous = true
-        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: self.sizeWidth, height: self.sizeWidth), contentMode: PHImageContentMode.aspectFill, options: options) { (image, info) in
-            
             cell.imageView?.image = image
             
         }
@@ -281,7 +292,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let asset = self.assetResult?[indexPath.row] else { return }
+        guard let asset = self.assetResult[indexPath.row].asset else { return }
         
         if let loadingID = self.currentLoadingID {
             
