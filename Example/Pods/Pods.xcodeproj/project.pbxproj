@@ -1337,7 +1337,9 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					46C9CC5744E7CA7B19C996256400FD2F = {
+						DevelopmentTeam = 69RZ8VFCR8;
 						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
 					};
 					65EDA2E23B3C0720F5868E7A29BE7B8C = {
 						ProvisioningStyle = Manual;
@@ -2172,12 +2174,16 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GracefulImagePicker";
+				DEVELOPMENT_TEAM = 69RZ8VFCR8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Target Support Files/GracefulImagePicker/ResourceBundle-GracefulImagePicker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = GracefulImagePicker;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2310,12 +2316,16 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GracefulImagePicker";
+				DEVELOPMENT_TEAM = 69RZ8VFCR8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "Target Support Files/GracefulImagePicker/ResourceBundle-GracefulImagePicker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = GracefulImagePicker;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
