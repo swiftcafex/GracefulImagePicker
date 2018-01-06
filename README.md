@@ -7,9 +7,11 @@
 
 ## Example
 
+![](https://github.com/swiftcafex/GracefulImagePicker/blob/master/Documents/title.gif)
+
 GracefulImagePicker is a designed and simple UI component for pick image from system album. Like the image show above, it provide a better user experience than the default native component.
 
-[这篇文档的简体中文版本]()
+[这篇文档的简体中文版本](https://github.com/swiftcafex/GracefulImagePicker/blob/master/README_ZH.md)
 
 ## Requirements
 
@@ -110,7 +112,7 @@ pickerView = GracefulImagePickerView(frame: CGRect.zero, config: config)
 My email: swiftcafex@gmail.com.
 You can also follow me on wechat:
 
-
+![](https://github.com/swiftcafex/GracefulImagePicker/blob/master/Documents/qrcode.jpg)
 
 ## License
 
