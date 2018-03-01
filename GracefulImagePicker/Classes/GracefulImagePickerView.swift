@@ -164,10 +164,28 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     // Load photos from album
     public func reload() {
         
-        self.loadAlbums()
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+            
+            //if not authorized
+            PHPhotoLibrary.requestAuthorization({ (status) in
+                
+                DispatchQueue.main.async {
+                 
+                    self.reload()
+                    
+                }
+                
+            })
+            
+        } else {
         
-        self.albumListView?.bindAlbums(albumList: self.albumList)
-        loadPhotos(album: self.albumList.first)
+            self.loadAlbums()
+            
+            self.albumListView?.bindAlbums(albumList: self.albumList)
+            loadPhotos(album: self.albumList.first)
+            
+        }
+        
         
     }
     
