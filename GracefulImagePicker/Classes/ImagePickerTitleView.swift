@@ -32,9 +32,50 @@ class ImagePickerTitleView: UIView {
     var callbackOpenAlbum : (() -> Void)?       // callback for open album
     var callbackCloseAlbum : (() -> Void)?      // callback for close album
     
+    
+    init(frame: CGRect, bgColor: UIColor, textColor: UIColor) {
+        
+        super.init(frame: frame)
+        
+    }
+    
     init(frame: CGRect, style: ImagePickerStyle) {
         
         super.init(frame: frame)
+        self.setupView()
+        
+        if(style == ImagePickerStyle.Black) {
+            
+            self.backgroundColor = UIColor.black
+            self.btnBack?.setImage(ImageLoader.image(named: "picker_back"), for: UIControlState.normal)
+            self.titleLabel?.textColor = UIColor.white
+            
+        } else {
+            
+            self.backgroundColor = UIColor.white
+            self.btnBack?.setImage(ImageLoader.image(named: "picker_back_blk"), for: UIControlState.normal)
+            self.titleLabel?.textColor = UIColor.black
+            
+        }
+        
+        // init album button
+        if(style == ImagePickerStyle.Black) {
+            
+            self.imageOpenAlbum = "btn_open_album"
+            self.imageCloseAlbum = "btn_close_album"
+            
+        } else {
+            
+            self.imageOpenAlbum = "btn_open_album_blk"
+            self.imageCloseAlbum = "btn_close_album_blk"
+            
+        }
+        
+        self.btnAlbum?.setImage(ImageLoader.image(named: self.imageOpenAlbum!), for: .normal)
+        
+    }
+    
+    public func setupView() {
         
         // shadow effect
         self.layer.shadowRadius = 2
@@ -51,52 +92,18 @@ class ImagePickerTitleView: UIView {
         self.addSubview(titleLabel)
         self.titleLabel = titleLabel
         
+        
         // init gobcck button
         let btnBack = UIButton(frame: CGRect.zero)
-        
-        if(style == ImagePickerStyle.Black) {
-            
-            self.backgroundColor = UIColor.black
-            
-            btnBack.setImage(ImageLoader.image(named: "picker_back"), for: UIControlState.normal)
-            titleLabel.textColor = UIColor.white
-            
-        } else {
-        
-            
-            self.backgroundColor = UIColor.white
-            btnBack.setImage(ImageLoader.image(named: "picker_back_blk"), for: UIControlState.normal)
-            titleLabel.textColor = UIColor.black
-            
-        }
-        
-        
         btnBack.addTarget(self, action: #selector(self.btnBackClicked), for: UIControlEvents.touchUpInside)
-        
         self.addSubview(btnBack)
-        
         self.btnBack = btnBack
-        
-        // init album button
-        if(style == ImagePickerStyle.Black) {
-            
-            self.imageOpenAlbum = "btn_open_album"
-            self.imageCloseAlbum = "btn_close_album"
-            
-        } else {
-            
-            self.imageOpenAlbum = "btn_open_album_blk"
-            self.imageCloseAlbum = "btn_close_album_blk"
-            
-        }
+     
         
         let btnAlbum = UIButton(frame: CGRect.zero)
-        btnAlbum.setImage(ImageLoader.image(named: self.imageOpenAlbum!), for: .normal)
         btnAlbum.addTarget(self, action: #selector(self.albumOpenClicked), for: UIControlEvents.touchUpInside)
         self.addSubview(btnAlbum)
-        
         self.btnAlbum = btnAlbum
-        
     }
     
     public required init?(coder aDecoder: NSCoder) {
