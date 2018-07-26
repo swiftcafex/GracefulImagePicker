@@ -14,6 +14,8 @@ class PickerContanerViewController: UIViewController {
     var imagePickerView : GracefulImagePickerView?
     var pickerConfig: ImagePickerConfiguration?
     
+    // MARK: UIView 生命周期
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -31,9 +33,9 @@ class PickerContanerViewController: UIViewController {
             
         }
         
-        
         pickerView?.backClicked = {
             
+            self.navigationController?.navigationBar.isHidden = false
             self.dismiss(animated: true, completion: nil)
             
         }
@@ -45,10 +47,17 @@ class PickerContanerViewController: UIViewController {
             self.navigationController?.pushViewController(resultView, animated: true)
             
         }
+        
         self.view.addSubview(pickerView!)
         self.imagePickerView = pickerView
         
         self.navigationController?.navigationBar.isHidden = true
+        
+    }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        
+        print("1122")
         
     }
 
@@ -77,15 +86,7 @@ class PickerContanerViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        super.viewDidAppear(animated)
-        
-        
-    }
-    
-    
-    
+    // MARK: 属性设置
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
         return UIStatusBarStyle.lightContent
@@ -97,14 +98,5 @@ class PickerContanerViewController: UIViewController {
         return true
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

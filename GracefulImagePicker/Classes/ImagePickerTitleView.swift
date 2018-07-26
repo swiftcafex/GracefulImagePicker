@@ -16,7 +16,7 @@ public enum ImagePickerStyle: Int {
     
 }
 
-class ImagePickerTitleView: UIView {
+public class ImagePickerTitleView: UIView {
 
     public var titleLabel: UILabel?     // album title label
     public var btnBack: UIButton?       // go back button
@@ -33,13 +33,13 @@ class ImagePickerTitleView: UIView {
     var callbackCloseAlbum : (() -> Void)?      // callback for close album
     
     
-    init(frame: CGRect, bgColor: UIColor, textColor: UIColor) {
+    public init(frame: CGRect, bgColor: UIColor, textColor: UIColor) {
         
         super.init(frame: frame)
         
     }
     
-    init(frame: CGRect, style: ImagePickerStyle) {
+    public init(frame: CGRect, style: ImagePickerStyle) {
         
         super.init(frame: frame)
         self.setupView()
@@ -78,10 +78,10 @@ class ImagePickerTitleView: UIView {
     public func setupView() {
         
         // shadow effect
-        self.layer.shadowRadius = 2
-        self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOpacity = 0.3
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+//        self.layer.shadowRadius = 2
+//        self.layer.shadowColor = UIColor.gray.cgColor
+//        self.layer.shadowOpacity = 0.3
+//        self.layer.shadowOffset = CGSize(width: 0, height: 4)
         
         // init title view
         let titleTap = UITapGestureRecognizer(target: self, action: #selector(self.albumOpenClicked))

@@ -121,6 +121,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             config.reverseImageList = true
             
             let pickerController = GracefulImagePickerViewController(config: config)
+            
             pickerController.imageSelected = { image, asset in
                 
                 let resultView = ImageSelectedViewController()

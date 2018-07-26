@@ -19,7 +19,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     var albumList = [AlbumCollection]()
     var assetResult = [PhotoAsset]()
     
-    var titleView: ImagePickerTitleView?
+    public var titleView: ImagePickerTitleView?
     
     var albumListView: AlbumListView?
     
@@ -301,7 +301,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         }
         
         photoAsset.getThumbnail(sizeWidth: self.sizeWidth) { (image) in
-        
+            
             cell.imageView?.image = image
             
         }
