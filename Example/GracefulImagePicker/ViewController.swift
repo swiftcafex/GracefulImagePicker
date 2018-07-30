@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var tableView: UITableView?
     
-    var cellTitleList = ["Present White Style", "Present Black Style", "Push White Style", "Push Black Black", "Push Black Black And Reverse"]
+    var cellTitleList = ["Present White Style", "Present Black Style", "Push White Style", "Push Black Black", "Push Black Black And Reverse", "Push custom background color"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +115,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.navigationController?.pushViewController(pickerController, animated: true)
             
         } else if indexPath.row == 4 {
+            
+            let config = ImagePickerConfiguration()
+            config.style = .Black
+            config.reverseImageList = true
+            
+            let pickerController = GracefulImagePickerViewController(config: config)
+            pickerController.imageSelected = { image, asset in
+                
+                let resultView = ImageSelectedViewController()
+                resultView.image = image
+                self.navigationController?.pushViewController(resultView, animated: true)
+                
+            }
+            self.navigationController?.pushViewController(pickerController, animated: true)
+            
+        } else if indexPath.row == 5 {
             
             let config = ImagePickerConfiguration()
             config.style = .Black

@@ -38,7 +38,6 @@ class PhotoAsset: NSObject {
 
         }
         
-        
     }
     
     func getThumbnail(sizeWidth: CGFloat, callback: @escaping (UIImage?) -> Void) {

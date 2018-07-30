@@ -70,6 +70,7 @@ class PickerContanerViewController: UIViewController {
             bottom = self.view.safeAreaInsets.bottom
             
         } else {
+            
             // Fallback on earlier versions
         }
         
@@ -81,10 +82,14 @@ class PickerContanerViewController: UIViewController {
         
         super.viewDidAppear(animated)
         
-        
     }
     
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         

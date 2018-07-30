@@ -38,7 +38,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         // Collection View
         let collectionLayout = UICollectionViewFlowLayout()
-        
+        	
         collectionLayout.minimumLineSpacing = 2
         collectionLayout.minimumInteritemSpacing = 2
         collectionLayout.sectionInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
@@ -72,27 +72,28 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         // Title View
         let titleView = ImagePickerTitleView(frame: CGRect.zero, style: config.style)
         
-        titleView.callbackCloseAlbum = {
+        self.titleView = titleView
+        
+        self.titleView?.callbackCloseAlbum = {
             
             self.hideAlbumList()
             
         }
         
-        titleView.callbackOpenAlbum = {
+        self.titleView?.callbackOpenAlbum = {
             
             self.showAlbumList()
             
         }
         
-        titleView.backClicked = {
+        self.titleView?.backClicked = {
             
             self.backClicked?()
             
         }
         
-        
         self.addSubview(titleView)
-        self.titleView = titleView
+        
         
         self.reload()
         
