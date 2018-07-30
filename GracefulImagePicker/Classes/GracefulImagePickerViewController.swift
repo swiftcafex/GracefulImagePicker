@@ -10,14 +10,20 @@ import Photos
 
 public class GracefulImagePickerViewController: UIViewController {
 
-    var imagePickerView: GracefulImagePickerView?
+    public var imagePickerView: GracefulImagePickerView?
     var config: ImagePickerConfiguration?
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
-    public init(config: ImagePickerConfiguration = ImagePickerConfiguration()) {
+    public init(config: ImagePickerConfiguration) {
         
         super.init(nibName: nil, bundle: nil)
         self.config = config
+       
+    }
+    
+    public init() {
+    
+        super.init(nibName: nil, bundle: nil)
         
     }
     
