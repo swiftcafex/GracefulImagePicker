@@ -72,7 +72,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = "Picker Views"
-        titleLabel.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        titleLabel.backgroundColor = UIColor.white
         titleLabel.textColor = UIColor.black
         titleLabel.textAlignment = .center
         self.view.addSubview(titleLabel)

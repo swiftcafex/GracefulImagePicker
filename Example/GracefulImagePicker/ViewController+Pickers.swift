@@ -12,23 +12,20 @@ import GracefulImagePicker
 
 extension ViewController {
     
+    
     func presentWhiteStyle() {
         
-        let picker = PickerContanerViewController()
-        let nav = UINavigationController(rootViewController: picker)
-        self.present(nav, animated: true, completion: nil)
+        let pickerVC = GracefulImagePickerViewController()
+        self.present(pickerVC, animated: true, completion: nil)
         
     }
     
     func presentBlackStyle() {
         
-        let picker = PickerContanerViewController()
         let config = ImagePickerConfiguration()
         config.style = .Black
-        picker.pickerConfig = config
-        let nav = UINavigationController(rootViewController: picker)
-        self.present(nav, animated: true, completion: nil)
-
+        let pickerVC = GracefulImagePickerViewController(config: config)
+        self.present(pickerVC, animated: true, completion: nil)
         
     }
     

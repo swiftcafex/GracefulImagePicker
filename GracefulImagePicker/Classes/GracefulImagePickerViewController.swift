@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-public class GracefulImagePickerViewController: UIViewController {
+public class GracefulImagePickerViewController: UINavigationController {
 
     public var imagePickerView: GracefulImagePickerView?
     var config: ImagePickerConfiguration?
@@ -54,6 +54,7 @@ public class GracefulImagePickerViewController: UIViewController {
         
         self.imagePickerView?.backClicked = {
             
+            self.dismiss(animated: true, completion: nil)
             self.navigationController?.popViewController(animated: true)
             
         }
@@ -83,19 +84,29 @@ public class GracefulImagePickerViewController: UIViewController {
     public override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
+        
+        var top = CGFloat(20)
+        
+        if #available(iOS 11.0, *) {
+            
+            top = self.view.safeAreaInsets.top
+            
+        }
+        print("top \(top)")
         self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
     }
 
     public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-    public override var prefersStatusBarHidden: Bool {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        return true
+        return .lightContent
         
     }
+    
 
 }
