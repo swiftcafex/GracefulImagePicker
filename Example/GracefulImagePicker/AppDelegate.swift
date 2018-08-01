@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navController
+        self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
         
         return true

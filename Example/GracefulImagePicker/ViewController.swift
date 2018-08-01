@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var cellData = [CellSection]()
     
+    var titleLabel: UILabel?
     
     func setupCells() {
         
@@ -62,7 +63,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cellData.append(sectionPresent)
         cellData.append(sectionPush)
         
-        
     }
     
     override func viewDidLoad() {
@@ -70,7 +70,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
         self.setupCells()
         
-        self.title = "GracefulImagePicker"
+        let titleLabel = UILabel(frame: CGRect.zero)
+        titleLabel.text = "Picker Views"
+        titleLabel.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        titleLabel.textColor = UIColor.black
+        titleLabel.textAlignment = .center
+        self.view.addSubview(titleLabel)
+        self.titleLabel = titleLabel
         
         let tableView = UITableView(frame: CGRect.zero)
         tableView.delegate = self
@@ -85,7 +91,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
-        self.tableView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+        var top = CGFloat(20)
+        
+        if #available(iOS 11.0, *) {
+            
+            top = self.view.safeAreaInsets.top
+            
+        }
+        self.titleLabel?.frame = CGRect(x: 0, y: top, width: self.view.frame.size.width, height: 44)
+        self.tableView?.frame = CGRect(x: 0, y: top + 44, width: self.view.frame.size.width, height: self.view.frame.size.height - top - 44)
         
     }
     
@@ -109,17 +124,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    // MARK: UITableView Delegate
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        return 1
+        return .lightContent
         
     }
     
+    // MARK: UITableView Delegate
+    
+    // Sections
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return self.cellData.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        let section = self.cellData[section]
+        return section.title
+        
+    }
+    // Cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.cellTitleList.count
+        let section = self.cellData[section]
+        return section.items.count
         
     }
     
@@ -127,7 +157,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = self.cellTitleList[indexPath.row]
+        let section = self.cellData[indexPath.section]
+        let item = section.items[indexPath.row]
+        
+        cell.textLabel?.text = item.title
         
         return cell
         
@@ -135,92 +168,63 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
-        
-            // default white style
-            let picker = PickerContanerViewController()
-            let nav = UINavigationController(rootViewController: picker)
-            self.present(nav, animated: true, completion: nil)
-            
-        } else if indexPath.row == 1 {
-            
-            // black style
-            
-            let picker = PickerContanerViewController()
-            let config = ImagePickerConfiguration()
-            config.style = .Black
-            picker.pickerConfig = config
-            let nav = UINavigationController(rootViewController: picker)
-            self.present(nav, animated: true, completion: nil)
-            
-        } else if indexPath.row == 2 {
-            
-            let pickerController = GracefulImagePickerViewController()
-            pickerController.imageSelected = { image, asset in
-                
-                let resultView = ImageSelectedViewController()
-                resultView.image = image
-                self.navigationController?.pushViewController(resultView, animated: true)
-                
-            }
-            self.navigationController?.navigationBar.isHidden = true
-            self.navigationController?.pushViewController(pickerController, animated: true)
-            
-        } else if indexPath.row == 3 {
-            
-            let config = ImagePickerConfiguration()
-            config.style = .Black
-            
-            let pickerController = GracefulImagePickerViewController(config: config)
-            pickerController.imageSelected = { image, asset in
-                
-                let resultView = ImageSelectedViewController()
-                resultView.image = image
-                self.navigationController?.pushViewController(resultView, animated: true)
-                
-            }
-            self.navigationController?.navigationBar.isHidden = true
-            self.navigationController?.pushViewController(pickerController, animated: true)
-            
-        } else if indexPath.row == 4 {
-            
-            let config = ImagePickerConfiguration()
-            config.style = .Black
-            config.reverseImageList = true
-            
-            let pickerController = GracefulImagePickerViewController(config: config)
-            
-            pickerController.imageSelected = { image, asset in
-                
-                let resultView = ImageSelectedViewController()
-                resultView.image = image
-                self.navigationController?.pushViewController(resultView, animated: true)
-                
-            }
-            self.navigationController?.navigationBar.isHidden = true
-            self.navigationController?.pushViewController(pickerController, animated: true)
-            
-        } else if indexPath.row == 5 {
-            
-            let config = ImagePickerConfiguration()
-            config.style = .Black
-            config.reverseImageList = true
-            
-            let pickerController = GracefulImagePickerViewController(config: config)
-            pickerController.imageSelected = { image, asset in
-                
-                let resultView = ImageSelectedViewController()
-                resultView.image = image
-                self.navigationController?.pushViewController(resultView, animated: true)
-                
-            }
-            
-            pickerController.imagePickerView?.backgroundColor = UIColor.red
-            self.navigationController?.navigationBar.isHidden = true
-            self.navigationController?.pushViewController(pickerController, animated: true)
-            
-        }
-        
+        let section = self.cellData[indexPath.section]
+        let item = section.items[indexPath.row]
+        item.callback?()
+//        if indexPath.row == 0 {
+//
+//            // default white style
+//
+//        } else if indexPath.row == 1 {
+//
+//            // black style
+//
+//
+//        } else if indexPath.row == 2 {
+//
+//
+//        } else if indexPath.row == 3 {
+//
+//
+//        } else if indexPath.row == 4 {
+//
+//            let config = ImagePickerConfiguration()
+//            config.style = .Black
+//            config.reverseImageList = true
+//
+//            let pickerController = GracefulImagePickerViewController(config: config)
+//
+//            pickerController.imageSelected = { image, asset in
+//
+//                let resultView = ImageSelectedViewController()
+//                resultView.image = image
+//                self.navigationController?.pushViewController(resultView, animated: true)
+//
+//            }
+//            self.navigationController?.navigationBar.isHidden = true
+//            self.navigationController?.pushViewController(pickerController, animated: true)
+//
+//        } else if indexPath.row == 5 {
+//
+//            let config = ImagePickerConfiguration()
+//            config.style = .Black
+//            config.reverseImageList = true
+//
+//            let pickerController = GracefulImagePickerViewController(config: config)
+//            pickerController.imageSelected = { image, asset in
+//
+//                let resultView = ImageSelectedViewController()
+//                resultView.image = image
+//                self.navigationController?.pushViewController(resultView, animated: true)
+//
+//            }
+//
+//            pickerController.imagePickerView?.backgroundColor = UIColor.red
+//            self.navigationController?.navigationBar.isHidden = true
+//            self.navigationController?.pushViewController(pickerController, animated: true)
+//
+//        }
+//
         tableView.deselectRow(at: indexPath, animated: false)
         
     }
