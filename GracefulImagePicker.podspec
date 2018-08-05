@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GracefulImagePicker'
-  s.version          = '0.1.4'
+  s.version          = '0.1.6'
   s.summary          = 'A functional UI component for pick image on iOS.'
 
 # This description is used to generate tags and improve search results.
