@@ -120,7 +120,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         let titleHeight = CGFloat(44)
         self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: titleHeight + top)
         
-        self.collectionView?.frame = CGRect(x: 0, y: titleHeight,
+        self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
                                             width: self.frame.size.width,
                                             height: self.frame.size.height - titleHeight - top)
         
