@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		104B32AE211589FC00B27F70 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104B32AD211589FC00B27F70 /* NavigationViewController.swift */; };
 		104E3E85210EFE6F00F3C6D0 /* ViewController+Pickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E3E84210EFE6F00F3C6D0 /* ViewController+Pickers.swift */; };
 		104E3E89210F005D00F3C6D0 /* CellSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E3E88210F005D00F3C6D0 /* CellSection.swift */; };
 		104E3E8B210F006A00F3C6D0 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E3E8A210F006A00F3C6D0 /* CellItem.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0FD808D6B9EEF755DACAB71F /* Pods_GracefulImagePicker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GracefulImagePicker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		104B32AD211589FC00B27F70 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		104E3E84210EFE6F00F3C6D0 /* ViewController+Pickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Pickers.swift"; sourceTree = "<group>"; };
 		104E3E88210F005D00F3C6D0 /* CellSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSection.swift; sourceTree = "<group>"; };
 		104E3E8A210F006A00F3C6D0 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		104B32AC211589DF00B27F70 /* ImageSelect */ = {
+			isa = PBXGroup;
+			children = (
+				10A32EA61FF7964400EAB8F3 /* ImageSelectedViewController.swift */,
+			);
+			path = ImageSelect;
+			sourceTree = "<group>";
+		};
 		104E3E87210F004F00F3C6D0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,12 +138,13 @@
 		607FACD21AFB9204008FA782 /* Example for GracefulImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				104B32AC211589DF00B27F70 /* ImageSelect */,
 				104E3E87210F004F00F3C6D0 /* Cell */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				104E3E84210EFE6F00F3C6D0 /* ViewController+Pickers.swift */,
 				1087CDD81FF4A4A0008BD1C0 /* PickerContanerViewController.swift */,
-				10A32EA61FF7964400EAB8F3 /* ImageSelectedViewController.swift */,
+				104B32AD211589FC00B27F70 /* NavigationViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -383,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104B32AE211589FC00B27F70 /* NavigationViewController.swift in Sources */,
 				104E3E85210EFE6F00F3C6D0 /* ViewController+Pickers.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				10A32EA71FF7964400EAB8F3 /* ImageSelectedViewController.swift in Sources */,

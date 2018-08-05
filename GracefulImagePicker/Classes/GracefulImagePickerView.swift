@@ -70,7 +70,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         
         // Title View
-        let titleView = ImagePickerTitleView(frame: CGRect.zero, style: config.style)
+        let titleView = ImagePickerTitleView(frame: CGRect.zero, config: config)
         
         self.titleView = titleView
         

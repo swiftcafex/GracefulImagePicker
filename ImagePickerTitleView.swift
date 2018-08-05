@@ -39,18 +39,19 @@ public class ImagePickerTitleView: UIView {
         
     }
     
-    public init(frame: CGRect, style: ImagePickerStyle) {
+    public init(frame: CGRect, config: ImagePickerConfiguration) {
         
         super.init(frame: frame)
         self.setupView()
+    
         
-        if(style == ImagePickerStyle.Black) {
+        if config.style == ImagePickerStyle.Black {
             
             self.backgroundColor = UIColor.black
             self.btnBack?.setImage(ImageLoader.image(named: "picker_back"), for: UIControlState.normal)
             self.titleLabel?.textColor = UIColor.white
             
-        } else {
+        } else if config.style == ImagePickerStyle.White {
             
             self.backgroundColor = UIColor.white
             self.btnBack?.setImage(ImageLoader.image(named: "picker_back_blk"), for: UIControlState.normal)
@@ -58,8 +59,16 @@ public class ImagePickerTitleView: UIView {
             
         }
         
+        // Custom Background
+        if let titleBgColor = config.titleBackground {
+            
+            self.backgroundColor = titleBgColor
+            
+        }
+        
+        
         // init album button
-        if(style == ImagePickerStyle.Black) {
+        if(config.style == ImagePickerStyle.Black) {
             
             self.imageOpenAlbum = "btn_open_album"
             self.imageCloseAlbum = "btn_close_album"

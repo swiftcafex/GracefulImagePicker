@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GracefulImagePicker
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let viewController = ViewController()
-        let navController = UINavigationController(rootViewController: viewController)
+        
+        let navController = NavigationViewController(rootViewController: viewController)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navController

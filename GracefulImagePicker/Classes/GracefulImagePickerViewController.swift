@@ -8,10 +8,12 @@
 import UIKit
 import Photos
 
-public class GracefulImagePickerViewController: UINavigationController {
+public class GracefulImagePickerViewController: UIViewController {
 
     public var imagePickerView: GracefulImagePickerView?
+    
     var config: ImagePickerConfiguration?
+    
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
     public init(config: ImagePickerConfiguration) {
@@ -65,12 +67,14 @@ public class GracefulImagePickerViewController: UINavigationController {
             
         }
         
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.setNeedsStatusBarAppearanceUpdate()
         
     }
     
@@ -92,19 +96,38 @@ public class GracefulImagePickerViewController: UINavigationController {
             top = self.view.safeAreaInsets.top
             
         }
-        print("top \(top)")
+        
         self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
     }
 
     public override func didReceiveMemoryWarning() {
+
         super.didReceiveMemoryWarning()
         
     }
     
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        return .lightContent
+        if let statusStyle = self.config?.statusStyle {
+            
+            return statusStyle
+            
+        } else if let style = self.config?.style {
+            
+            if style == .Black {
+                
+                return .lightContent
+                
+            } else if style == .White {
+                
+                return .default
+                
+            }
+            
+        }
+        
+        return .default
         
     }
     

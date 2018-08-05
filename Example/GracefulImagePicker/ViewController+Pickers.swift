@@ -9,9 +9,18 @@
 import Foundation
 import UIKit
 import GracefulImagePicker
+import Photos
 
 extension ViewController {
     
+    
+    func imageSelected(image: UIImage, asset: PHAsset) {
+     
+        let resultView = ImageSelectedViewController()
+        resultView.image = image
+        self.navigationController?.pushViewController(resultView, animated: true)
+        
+    }
     
     func presentWhiteStyle() {
         
@@ -31,16 +40,9 @@ extension ViewController {
     
     func pushWhiteStyle() {
         
-        let pickerController = GracefulImagePickerViewController()
-        pickerController.imageSelected = { image, asset in
-            
-            let resultView = ImageSelectedViewController()
-            resultView.image = image
-            self.navigationController?.pushViewController(resultView, animated: true)
-            
-        }
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.pushViewController(pickerController, animated: true)
+        let pickerVC = GracefulImagePickerViewController()
+        self.navigationController?.pushViewController(pickerVC, animated: true)
+        pickerVC.imageSelected = self.imageSelected
 
         
     }
@@ -50,17 +52,26 @@ extension ViewController {
         let config = ImagePickerConfiguration()
         config.style = .Black
         
-        let pickerController = GracefulImagePickerViewController(config: config)
-        pickerController.imageSelected = { image, asset in
-            
-            let resultView = ImageSelectedViewController()
-            resultView.image = image
-            self.navigationController?.pushViewController(resultView, animated: true)
-            
-        }
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.pushViewController(pickerController, animated: true)
+        let pickerVC = GracefulImagePickerViewController(config: config)
+        pickerVC.imageSelected = self.imageSelected
+        self.navigationController?.pushViewController(pickerVC, animated: true)
+        
 
+    }
+    
+    func pushCustomStyle() {
+        
+        
+        let config = ImagePickerConfiguration()
+        config.statusStyle = UIStatusBarStyle.lightContent
+        config.titleBackground = UIColor.darkGray
+        config.style = .Black
+        config.reverseImageList = true
+        
+        let pickerVC = GracefulImagePickerViewController(config: config)
+        pickerVC.imageSelected = self.imageSelected
+        self.navigationController?.pushViewController(pickerVC, animated: true)
+        
     }
     
 }
