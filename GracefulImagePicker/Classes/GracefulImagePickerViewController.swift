@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-public class GracefulImagePickerViewController: UIViewController {
+open class GracefulImagePickerViewController: UIViewController {
 
     public var imagePickerView: GracefulImagePickerView?
     
@@ -35,7 +35,7 @@ public class GracefulImagePickerViewController: UIViewController {
         
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         
         super.viewDidLoad()
 
@@ -70,7 +70,7 @@ public class GracefulImagePickerViewController: UIViewController {
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -78,14 +78,14 @@ public class GracefulImagePickerViewController: UIViewController {
         
     }
     
-    public override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         
         super.viewDidDisappear(animated)
 //        self.navigationController?.navigationBar.isHidden = false
         
     }
     
-    public override func viewWillLayoutSubviews() {
+    open override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
         
@@ -101,13 +101,13 @@ public class GracefulImagePickerViewController: UIViewController {
         
     }
 
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
 
         super.didReceiveMemoryWarning()
         
     }
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
         
         if let statusStyle = self.config?.statusStyle {
             
