@@ -12,10 +12,12 @@ import GracefulImagePicker
 
 extension ViewController {
     
+    // Present white style view
     func presentWhiteStyle() {
         
         let picker = PickerContanerViewController()
         let nav = UINavigationController(rootViewController: picker)
+        nav.navigationBar.isHidden = true
         self.present(nav, animated: true, completion: nil)
         
     }

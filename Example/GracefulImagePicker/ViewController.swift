@@ -58,8 +58,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         sectionPush.items.append(itemPushBlack)
     
-        
-        
         cellData.append(sectionPresent)
         cellData.append(sectionPush)
         
@@ -85,6 +83,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(tableView)
         self.navigationController?.navigationBar.isHidden = true
         self.tableView = tableView
+        
+        print("height: \(UIApplication.shared.statusBarFrame.size.height)")
         
     }
     
@@ -171,60 +171,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let section = self.cellData[indexPath.section]
         let item = section.items[indexPath.row]
         item.callback?()
-//        if indexPath.row == 0 {
-//
-//            // default white style
-//
-//        } else if indexPath.row == 1 {
-//
-//            // black style
-//
-//
-//        } else if indexPath.row == 2 {
-//
-//
-//        } else if indexPath.row == 3 {
-//
-//
-//        } else if indexPath.row == 4 {
-//
-//            let config = ImagePickerConfiguration()
-//            config.style = .Black
-//            config.reverseImageList = true
-//
-//            let pickerController = GracefulImagePickerViewController(config: config)
-//
-//            pickerController.imageSelected = { image, asset in
-//
-//                let resultView = ImageSelectedViewController()
-//                resultView.image = image
-//                self.navigationController?.pushViewController(resultView, animated: true)
-//
-//            }
-//            self.navigationController?.navigationBar.isHidden = true
-//            self.navigationController?.pushViewController(pickerController, animated: true)
-//
-//        } else if indexPath.row == 5 {
-//
-//            let config = ImagePickerConfiguration()
-//            config.style = .Black
-//            config.reverseImageList = true
-//
-//            let pickerController = GracefulImagePickerViewController(config: config)
-//            pickerController.imageSelected = { image, asset in
-//
-//                let resultView = ImageSelectedViewController()
-//                resultView.image = image
-//                self.navigationController?.pushViewController(resultView, animated: true)
-//
-//            }
-//
-//            pickerController.imagePickerView?.backgroundColor = UIColor.red
-//            self.navigationController?.navigationBar.isHidden = true
-//            self.navigationController?.pushViewController(pickerController, animated: true)
-//
-//        }
-//
         tableView.deselectRow(at: indexPath, animated: false)
         
     }
