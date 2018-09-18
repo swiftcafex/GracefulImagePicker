@@ -84,8 +84,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationController?.navigationBar.isHidden = true
         self.tableView = tableView
         
-        print("height: \(UIApplication.shared.statusBarFrame.size.height)")
-        
     }
     
     override func viewWillLayoutSubviews() {

@@ -39,7 +39,6 @@ public class GracefulImagePickerViewController: UIViewController {
 
         self.navigationController?.navigationBar.isHidden = true
         
-        
         if let config = self.config {
         
             self.imagePickerView = GracefulImagePickerView(frame: CGRect.zero, config: config)
@@ -83,6 +82,9 @@ public class GracefulImagePickerViewController: UIViewController {
     public override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
+        if #available(iOS 11.0, *) {
+            print("parent area: \(self.view.safeAreaInsets)")
+        }
         self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
     }

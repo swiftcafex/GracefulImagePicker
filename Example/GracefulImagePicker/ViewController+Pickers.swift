@@ -12,7 +12,7 @@ import GracefulImagePicker
 
 extension ViewController {
     
-    // Present white style view
+    // 1. Present white style view
     func presentWhiteStyle() {
         
         let picker = PickerContanerViewController()
@@ -22,18 +22,22 @@ extension ViewController {
         
     }
     
+    // 2. Present Black stlye View
     func presentBlackStyle() {
         
         let picker = PickerContanerViewController()
         let config = ImagePickerConfiguration()
         config.style = .Black
         picker.pickerConfig = config
-        let nav = UINavigationController(rootViewController: picker)
+        picker.view.backgroundColor = UIColor.black
+        let nav = CustomableNavigationController(rootViewController: picker)
+        nav.statusBarStyle = .lightContent
+        nav.navigationBar.isHidden = true
         self.present(nav, animated: true, completion: nil)
 
-        
     }
     
+    // 3. Push White Style View
     func pushWhiteStyle() {
         
         let pickerController = GracefulImagePickerViewController()

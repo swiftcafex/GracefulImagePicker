@@ -18,6 +18,9 @@ public enum ImagePickerStyle: Int {
 
 public class ImagePickerTitleView: UIView {
 
+    // default head height, use for layout
+    var headHeight = CGFloat(44)
+    
     public var titleLabel: UILabel?     // album title label
     public var btnBack: UIButton?       // go back button
     
@@ -122,14 +125,15 @@ public class ImagePickerTitleView: UIView {
                 
                 let size = (labelText as NSString).size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
                 titleLabel.frame = CGRect(x: 0, y: 0, width: size.width, height: 30)
-                titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+                titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - headHeight / 2)
                 
             }
         
             if titleLabel.text != nil {
              
                 self.btnAlbum?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 15, y: self.frame.size.height / 2)
+                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 15,
+                                                y: self.frame.size.height - headHeight / 2)
                 
             }
             
@@ -138,7 +142,7 @@ public class ImagePickerTitleView: UIView {
         if let btnBack = self.btnBack {
         
             btnBack.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            btnBack.center = CGPoint(x: btnBack.frame.size.width / 2 + 8, y: self.frame.size.height / 2)
+            btnBack.center = CGPoint(x: btnBack.frame.size.width / 2 + 8, y: self.frame.size.height - headHeight / 2)
             
         }
         

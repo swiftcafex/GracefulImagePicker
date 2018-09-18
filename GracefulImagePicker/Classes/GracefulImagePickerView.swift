@@ -109,13 +109,24 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         super.layoutSubviews()
         
-        self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 44)
+        // Default top height
+        var top = UIApplication.shared.statusBarFrame.height
         
-        let collStartY = self.titleView!.frame.size.height
+        if #available(iOS 11.0, *) {
+            
+            print("safe area \(self.safeAreaInsets)")
+            top = self.safeAreaInsets.top
+            
+        }
         
-        self.collectionView?.frame = CGRect(x: 0, y: collStartY,
+        let headHeight = CGFloat(44)
+        
+        let titleHeight = top + headHeight
+        
+        self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: titleHeight)
+        self.collectionView?.frame = CGRect(x: 0, y: titleHeight,
                                             width: self.frame.size.width,
-                                            height: self.frame.size.height - collStartY)
+                                            height: self.frame.size.height - titleHeight)
         
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)

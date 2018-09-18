@@ -56,7 +56,6 @@ class PickerContanerViewController: UIViewController {
     
     override func didMove(toParentViewController parent: UIViewController?) {
         
-        print("1122")
         
     }
 
