@@ -42,22 +42,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let sectionPush = CellSection()
         sectionPush.title = "Push"
         
+        // White Style
         let itemPushWhite = CellItem()
         itemPushWhite.title = "White Style"
-        itemPushWhite.callback = {
-            
-        }
+        itemPushWhite.callback = self.pushWhiteStyle
+        sectionPush.items.append(itemPushWhite)
         
-        sectionPush.items.append(itemWhite)
-        
+        // Black Style
         let itemPushBlack = CellItem()
         itemPushBlack.title = "Black Style"
-        itemPushBlack.callback = {
-            
-        }
-        
+        itemPushBlack.callback = self.pushBlackStyle
         sectionPush.items.append(itemPushBlack)
-    
+        
+        // Custom Style
+        let itemPushCustom = CellItem()
+        itemPushCustom.title = "Custom Style"
+        itemPushCustom.callback = self.pushCustomStyle
+        sectionPush.items.append(itemPushCustom)
+        
         cellData.append(sectionPresent)
         cellData.append(sectionPush)
         
@@ -70,7 +72,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = "Picker Views"
-        titleLabel.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        titleLabel.backgroundColor = UIColor.white
         titleLabel.textColor = UIColor.black
         titleLabel.textAlignment = .center
         self.view.addSubview(titleLabel)
@@ -113,6 +115,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.setNeedsStatusBarAppearanceUpdate()
         
     }
 
@@ -124,7 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        return .lightContent
+        return .default
         
     }
     

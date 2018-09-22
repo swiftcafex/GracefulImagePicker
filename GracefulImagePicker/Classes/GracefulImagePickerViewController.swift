@@ -8,10 +8,12 @@
 import UIKit
 import Photos
 
-public class GracefulImagePickerViewController: UIViewController {
+open class GracefulImagePickerViewController: UIViewController {
 
     public var imagePickerView: GracefulImagePickerView?
+    
     var config: ImagePickerConfiguration?
+    
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
     
     public init(config: ImagePickerConfiguration) {
@@ -33,7 +35,7 @@ public class GracefulImagePickerViewController: UIViewController {
         
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         
         super.viewDidLoad()
 
@@ -53,6 +55,7 @@ public class GracefulImagePickerViewController: UIViewController {
         
         self.imagePickerView?.backClicked = {
             
+            self.dismiss(animated: true, completion: nil)
             self.navigationController?.popViewController(animated: true)
             
         }
@@ -63,41 +66,69 @@ public class GracefulImagePickerViewController: UIViewController {
             
         }
         
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.setNeedsStatusBarAppearanceUpdate()
         
     }
     
-    public override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         
         super.viewDidDisappear(animated)
 //        self.navigationController?.navigationBar.isHidden = false
         
     }
     
-    public override func viewWillLayoutSubviews() {
+    open override func viewWillLayoutSubviews() {
         
         super.viewWillLayoutSubviews()
+        
+        var top = CGFloat(20)
+        
         if #available(iOS 11.0, *) {
-            print("parent area: \(self.view.safeAreaInsets)")
+            
+            top = self.view.safeAreaInsets.top
+            
         }
+        
         self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
     }
 
-    public override func didReceiveMemoryWarning() {
+    open override func didReceiveMemoryWarning() {
+
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-    public override var prefersStatusBarHidden: Bool {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
         
-        return true
+        if let statusStyle = self.config?.statusStyle {
+            
+            return statusStyle
+            
+        } else if let style = self.config?.style {
+            
+            if style == .Black {
+                
+                return .lightContent
+                
+            } else if style == .White {
+                
+                return .default
+                
+            }
+            
+        }
+        
+        return .default
         
     }
+    
 
 }

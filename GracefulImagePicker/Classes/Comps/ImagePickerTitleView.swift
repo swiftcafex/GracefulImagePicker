@@ -42,18 +42,19 @@ public class ImagePickerTitleView: UIView {
         
     }
     
-    public init(frame: CGRect, style: ImagePickerStyle) {
+    public init(frame: CGRect, config: ImagePickerConfiguration) {
         
         super.init(frame: frame)
         self.setupView()
+    
         
-        if(style == ImagePickerStyle.Black) {
+        if config.style == ImagePickerStyle.Black {
             
             self.backgroundColor = UIColor.black
             self.btnBack?.setImage(ImageLoader.image(named: "picker_back"), for: UIControlState.normal)
             self.titleLabel?.textColor = UIColor.white
             
-        } else {
+        } else if config.style == ImagePickerStyle.White {
             
             self.backgroundColor = UIColor.white
             self.btnBack?.setImage(ImageLoader.image(named: "picker_back_blk"), for: UIControlState.normal)
@@ -61,8 +62,16 @@ public class ImagePickerTitleView: UIView {
             
         }
         
+        // Custom Background
+        if let titleBgColor = config.titleBackground {
+            
+            self.backgroundColor = titleBgColor
+            
+        }
+        
+        
         // init album button
-        if(style == ImagePickerStyle.Black) {
+        if(config.style == ImagePickerStyle.Black) {
             
             self.imageOpenAlbum = "btn_open_album"
             self.imageCloseAlbum = "btn_close_album"
@@ -93,8 +102,7 @@ public class ImagePickerTitleView: UIView {
         titleLabel.addGestureRecognizer(titleTap)
         
         self.addSubview(titleLabel)
-        self.titleLabel = titleLabel
-        
+        self.titleLabel = titleLabel        
         
         // init gobcck button
         let btnBack = UIButton(frame: CGRect.zero)
@@ -119,21 +127,22 @@ public class ImagePickerTitleView: UIView {
         
         super.layoutSubviews()
         
+        let contentHeight = CGFloat(44)
+        
         if let titleLabel = self.titleLabel {
         
             if let labelText = self.titleLabel?.text {
                 
                 let size = (labelText as NSString).size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
                 titleLabel.frame = CGRect(x: 0, y: 0, width: size.width, height: 30)
-                titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - headHeight / 2)
+                titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - contentHeight / 2)
                 
             }
         
             if titleLabel.text != nil {
              
                 self.btnAlbum?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 15,
-                                                y: self.frame.size.height - headHeight / 2)
+                self.btnAlbum?.center = CGPoint(x: titleLabel.frame.origin.x + titleLabel.frame.size.width + 15, y: self.frame.size.height - contentHeight / 2)
                 
             }
             
@@ -142,7 +151,7 @@ public class ImagePickerTitleView: UIView {
         if let btnBack = self.btnBack {
         
             btnBack.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            btnBack.center = CGPoint(x: btnBack.frame.size.width / 2 + 8, y: self.frame.size.height - headHeight / 2)
+            btnBack.center = CGPoint(x: btnBack.frame.size.width / 2 + 8, y: self.frame.size.height - contentHeight / 2)
             
         }
         
