@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func setupCells() {
         
-        // Section Present
+        /// Section Present ///
         let sectionPresent = CellSection()
         sectionPresent.title = "Present"
         
@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         sectionPresent.items.append(itemBlack)
         
         
-        // Section Push
+        /// Section Push ///
         let sectionPush = CellSection()
         sectionPush.title = "Push"
         
@@ -60,8 +60,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         itemPushCustom.callback = self.pushCustomStyle
         sectionPush.items.append(itemPushCustom)
         
+        
+        /// Section Multiple Selection ///
+        let sectionMultiSelection = CellSection()
+        sectionMultiSelection.title = "Multiple Selection"
+        
+        // Multiple Selection
+        let itemMultiSelection = CellItem()
+        itemMultiSelection.title = "Multiple Selection"
+        itemMultiSelection.callback = self.pushMutipleSelection
+        sectionMultiSelection.items.append(itemMultiSelection)
+        
         cellData.append(sectionPresent)
         cellData.append(sectionPush)
+        cellData.append(sectionMultiSelection)
         
     }
     

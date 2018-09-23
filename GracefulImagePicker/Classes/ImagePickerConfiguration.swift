@@ -17,6 +17,6 @@ public class ImagePickerConfiguration: NSObject {
     public var statusStyle: UIStatusBarStyle?   // specify status bar style
     public var titleBackground: UIColor?        // title view backgroud color
 
-    
+    public var mutipleSelection = false         // Multiple selection model
     //    public var scrollToBottom = false               // auto scroll to list bottom when loaded
 }

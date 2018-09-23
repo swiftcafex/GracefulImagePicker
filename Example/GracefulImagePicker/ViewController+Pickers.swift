@@ -78,4 +78,17 @@ extension ViewController {
         
     }
     
+    
+    // 3-1 Push Mutiple Selection
+    func pushMutipleSelection() {
+        
+        let config = ImagePickerConfiguration()
+        config.mutipleSelection = true
+        
+        let pickerVC = GracefulImagePickerViewController(config: config)
+        pickerVC.imageSelected = self.imageSelected
+        self.navigationController?.pushViewController(pickerVC, animated: true)
+        
+    }
+    
 }

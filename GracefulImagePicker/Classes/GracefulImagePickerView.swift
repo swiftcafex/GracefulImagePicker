@@ -314,6 +314,30 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         guard let asset = self.assetResult[indexPath.row].asset else { return }
         
+        if self.pickerConfig?.mutipleSelection ?? false {
+            
+            // handle mutiple selection
+            self.handleMutipleSelection(asset: asset, collectionView: collectionView, indexPath: indexPath)
+            
+        } else {
+            
+            // default handle Single Selection
+            self.handleSingleSelect(asset: asset, collectionView: collectionView, indexPath: indexPath)
+        }
+        
+    }
+    
+    var selectedAssets = [PHAsset]()
+    var selectedIndex = [IndexPath]()
+    
+    func handleMutipleSelection(asset: PHAsset, collectionView: UICollectionView, indexPath: IndexPath) {
+        
+        
+        
+    }
+    
+    func handleSingleSelect(asset: PHAsset, collectionView: UICollectionView, indexPath: IndexPath) {
+        
         if let loadingID = self.currentLoadingID {
             
             // Cancel current loading tasks.
@@ -323,6 +347,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             if let loadingIndexPath = self.currentLoadingIndexPath {
                 
                 self.currentLoadingIndexPath = nil
+                
                 if let cell = collectionView.cellForItem(at: loadingIndexPath) as? ImageCollectionViewCell {
                     //恢复视图状态
                     cell.downloadCanceled = true
@@ -394,7 +419,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             }
             
         })
-        
         
     }
     
