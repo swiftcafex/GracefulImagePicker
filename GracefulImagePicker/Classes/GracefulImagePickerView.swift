@@ -47,6 +47,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionLayout)
         self.addSubview(collectionView)
+        collectionView.contentInset = UIEdgeInsets.zero
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor(red: 249.0 / 255.0, green: 249.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
@@ -117,7 +118,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         }
         
-
         let titleHeight = CGFloat(44)
         self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: titleHeight + top)
         

@@ -22,6 +22,7 @@ extension ViewController {
         
     }
     
+    // 1-1 Present White Style View
     func presentWhiteStyle() {
         
         let pickerVC = GracefulImagePickerViewController()
@@ -29,7 +30,7 @@ extension ViewController {
         
     }
     
-    // 2. Present Black stlye View
+    // 1-2 Present Black stlye View
     func presentBlackStyle() {
         
         let config = ImagePickerConfiguration()
@@ -39,7 +40,7 @@ extension ViewController {
         
     }
     
-    // 3. Push White Style View
+    // 2-1 Push White Style View
     func pushWhiteStyle() {
         
         let pickerVC = GracefulImagePickerViewController()
@@ -49,6 +50,7 @@ extension ViewController {
         
     }
     
+    // 2-2 Push Black Style View
     func pushBlackStyle() {
         
         let config = ImagePickerConfiguration()
@@ -61,8 +63,8 @@ extension ViewController {
 
     }
     
+    // 2-3 Push Custom Style
     func pushCustomStyle() {
-        
         
         let config = ImagePickerConfiguration()
         config.statusStyle = UIStatusBarStyle.lightContent

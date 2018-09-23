@@ -38,7 +38,7 @@ open class GracefulImagePickerViewController: UIViewController {
     open override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.navigationBar.isHidden = true
         
         if let config = self.config {
@@ -86,8 +86,9 @@ open class GracefulImagePickerViewController: UIViewController {
     
     open override func viewWillLayoutSubviews() {
         
-        super.viewWillLayoutSubviews()
         
+        super.viewWillLayoutSubviews()
+        print("layout view controller")
         var top = CGFloat(20)
         
         if #available(iOS 11.0, *) {
