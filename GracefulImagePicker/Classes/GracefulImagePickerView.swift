@@ -302,6 +302,22 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         }
         
+        
+        // check select state
+        if self.selectedIndex.contains(indexPath) {
+            
+            if let index = selectedIndex.index(of: indexPath) {
+                
+                cell.showSelection(tag: "\(index + 1)")
+                
+            }
+            
+        } else {
+            
+            cell.hideSelection()
+            
+        }
+        
         return cell
         
     }
@@ -314,10 +330,12 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         guard let asset = self.assetResult[indexPath.row].asset else { return }
         
+        let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
+        
         if self.pickerConfig?.mutipleSelection ?? false {
             
             // handle mutiple selection
-            self.handleMutipleSelection(asset: asset, collectionView: collectionView, indexPath: indexPath)
+            self.handleMutipleSelection(cell: cell, collectionView: collectionView, indexPath: indexPath)
             
         } else {
             
@@ -327,12 +345,29 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
-    var selectedAssets = [PHAsset]()
     var selectedIndex = [IndexPath]()
     
-    func handleMutipleSelection(asset: PHAsset, collectionView: UICollectionView, indexPath: IndexPath) {
+    func handleMutipleSelection(cell: ImageCollectionViewCell, collectionView: UICollectionView, indexPath: IndexPath) {
         
+        if self.selectedIndex.contains(indexPath) {
+            
+            // if this cell has selected -> deselect it
+            if let index = selectedIndex.index(of: indexPath) {
+                
+                selectedIndex.remove(at: index)
+                cell.hideSelection()
+                
+            }
+            
+        } else {
+            
+            // if not select -> select it
+            selectedIndex.append(indexPath)
+            cell.showSelection(tag: "\(selectedIndex.count)")
+            
+        }
         
+//        self.collectionView?.reloadData()
         
     }
     

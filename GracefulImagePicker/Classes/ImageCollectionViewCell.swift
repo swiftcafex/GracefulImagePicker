@@ -8,6 +8,40 @@
 import UIKit
 import CircleProgressBar
 
+class SelectionView : UIView {
+    
+    var titleLabel : UILabel?
+    
+    override init(frame: CGRect) {
+        
+        super.init(frame: frame)
+        self.backgroundColor = UIColor(red: 83.0 / 255.0, green: 148.0 / 255.0, blue: 232.0 / 255.0, alpha: 0.8)
+        
+        let titleLabel = UILabel(frame: CGRect.zero)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.textColor = UIColor.white
+        
+        self.addSubview(titleLabel)
+        
+        self.titleLabel = titleLabel
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        super.init(coder: aDecoder)
+        
+    }
+    
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        self.titleLabel?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 30)
+        
+    }
+    
+}
+
 class ImageCollectionViewCell: UICollectionViewCell {
  
     var imageView: UIImageView?             // image view
@@ -17,6 +51,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
     var progressBar: CircleProgressBar?     // progress view used to display download.
     
     var downloadCanceled = false            // indicate whether the downloading task with this cell canceled.
+
+    var selectionView : SelectionView?      // selectionView
     
     override init(frame: CGRect) {
         
@@ -60,6 +96,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.progressBar = progressBar
         progressContainer.addSubview(progressBar)
         
+        
+        let selectionView = SelectionView(frame: CGRect.zero)
+        self.selectionView = selectionView
+        self.selectionView?.isHidden = true
+        self.addSubview(selectionView)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,9 +117,13 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.imageView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.cloudView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         
+        self.selectionView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        
         self.progressContainer?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.progressBar?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.progressBar?.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        
+        
         
     }
     
@@ -96,6 +142,21 @@ class ImageCollectionViewCell: UICollectionViewCell {
         self.cloudView?.image = nil
         
     }    
+    
+    // show selection
+    func showSelection(tag: String) {
+        
+        self.selectionView?.isHidden = false
+        self.selectionView?.titleLabel?.text = " \(tag)"
+        
+    }
+    
+    func hideSelection() {
+        
+        self.selectionView?.isHidden = true
+        self.selectionView?.titleLabel?.text = ""
+        
+    }
     
     // MARK: handle iCloud download progress.
     
