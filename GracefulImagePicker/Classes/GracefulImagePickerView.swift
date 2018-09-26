@@ -85,7 +85,11 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.titleView?.callbackOpenAlbum = {
             
+            self.deSeelctAllImages()
+            self.layoutSubviews()
+            
             self.showAlbumList()
+            
             
         }
         
@@ -99,6 +103,20 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         
         let selectionOperationView = SelectionOperationView(frame: CGRect.zero)
+//        selectionOperationView.isHidden = true
+        
+        selectionOperationView.confirmClicked = {
+            
+            
+            
+        }
+        
+        selectionOperationView.cancelClicked = {
+            
+            self.deSeelctAllImages()
+            
+        }
+        
         self.addSubview(selectionOperationView)
         
         self.selectionOperationView = selectionOperationView
@@ -128,14 +146,31 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         let titleHeight = CGFloat(44)
         self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: titleHeight + top)
         
-        self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
-                                            width: self.frame.size.width,
-                                            height: self.frame.size.height - titleHeight - top)
-        
-        self.selectionOperationView?.frame = CGRect(x: 0,
-                                                    y: self.frame.size.height - 55,
-                                                    width: self.frame.size.width,
-                                                    height: 55)
+        if self.pickerConfig?.mutipleSelection ?? false && self.selectedIndex.count > 0 {
+            
+            //mutiple selected
+            
+            self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
+                                                width: self.frame.size.width,
+                                                height: self.frame.size.height - titleHeight - top - 55)
+//            self.selectionOperationView?.isHidden = false
+            self.selectionOperationView?.frame = CGRect(x: 0,
+                                                        y: self.frame.size.height - 55,
+                                                        width: self.frame.size.width,
+                                                        height: 55)
+            
+        } else {
+         
+            self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
+                                                width: self.frame.size.width,
+                                                height: self.frame.size.height - titleHeight - top)
+//            self.selectionOperationView?.isHidden = true
+            self.selectionOperationView?.frame = CGRect(x: 0,
+                                                        y: self.frame.size.height,
+                                                        width: self.frame.size.width,
+                                                        height: 0)
+            
+        }
         
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
@@ -359,6 +394,16 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     var selectedIndex = [IndexPath]()
     
+    
+    func deSeelctAllImages() {
+        
+        self.selectedIndex.removeAll()
+        self.setNeedsLayout()
+        self.collectionView?.reloadData()
+        
+    }
+    
+    // Mutiple Selection
     func handleMutipleSelection(cell: ImageCollectionViewCell, collectionView: UICollectionView, indexPath: IndexPath) {
         
         if self.selectedIndex.contains(indexPath) {
@@ -379,7 +424,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         }
         
-//        self.collectionView?.reloadData()
+        self.selectionOperationView?.titleLabel?.text = "已选中 \(selectedIndex.count) 张图片"
+        self.setNeedsLayout()
         
     }
     
