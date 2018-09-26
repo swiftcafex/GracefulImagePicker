@@ -114,6 +114,7 @@
 		6E44B4075DC72E71671361B83510169D /* SuiteHooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB709631A7C8273002260D9B86782B /* SuiteHooks.swift */; };
 		6F164E94215604F500A9F305 /* ImagePickerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F164E92215604F500A9F305 /* ImagePickerTitleView.swift */; };
 		6F164E95215604F500A9F305 /* AlbumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F164E93215604F500A9F305 /* AlbumListView.swift */; };
+		6F920DEE2157E9960076D4DE /* SelectionOperationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F920DEC2157E87B0076D4DE /* SelectionOperationView.swift */; };
 		6FEE6D4676336A1964EF030080DF8FBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C285EB25F87003DC768B6442C81FE12 /* Foundation.framework */; };
 		73BC5AC2ECDB8722E085F14B53E0D24E /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE18374B067894F06ED7947B8CDF557 /* AssertionRecorder.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		74A7C826ED390EF61C25C69BB5A9C5B6 /* PrettySyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B418BC53697293544B858B7CCADC3 /* PrettySyntax.swift */; };
@@ -413,6 +414,7 @@
 		6DFF3BFD5EB4611112179E13032F35AE /* QuickSpec.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickSpec.m; path = Sources/QuickObjectiveC/QuickSpec.m; sourceTree = "<group>"; };
 		6F164E92215604F500A9F305 /* ImagePickerTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerTitleView.swift; sourceTree = "<group>"; };
 		6F164E93215604F500A9F305 /* AlbumListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListView.swift; sourceTree = "<group>"; };
+		6F920DEC2157E87B0076D4DE /* SelectionOperationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionOperationView.swift; sourceTree = "<group>"; };
 		7138F32E9767D3AEBFC99E58C17DA201 /* GracefulImagePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GracefulImagePickerView.swift; path = GracefulImagePicker/Classes/GracefulImagePickerView.swift; sourceTree = "<group>"; };
 		73066D4EE04F041CA5B0D485EA90346E /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
 		734563420E8A8BBB010DAB8716165F00 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 			children = (
 				6F164E92215604F500A9F305 /* ImagePickerTitleView.swift */,
 				6F164E93215604F500A9F305 /* AlbumListView.swift */,
+				6F920DEC2157E87B0076D4DE /* SelectionOperationView.swift */,
 			);
 			name = Comps;
 			path = GracefulImagePicker/Classes/Comps;
@@ -1657,6 +1660,7 @@
 				9E0FFD606883818512D031A649F2507C /* GracefulImagePicker-dummy.m in Sources */,
 				6F164E94215604F500A9F305 /* ImagePickerTitleView.swift in Sources */,
 				2792424EA3C44BF3608266CBDC4F4CA1 /* GracefulImagePickerView.swift in Sources */,
+				6F920DEE2157E9960076D4DE /* SelectionOperationView.swift in Sources */,
 				1029F5362126BFF8007E7A77 /* PhotoAsset.swift in Sources */,
 				1029F5312126BFDB007E7A77 /* ImagePickerConfiguration.swift in Sources */,
 				6F164E95215604F500A9F305 /* AlbumListView.swift in Sources */,

@@ -28,6 +28,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     var pickerConfig: ImagePickerConfiguration?
     
+    var selectionOperationView: SelectionOperationView?
+    
     public init(frame: CGRect, config: ImagePickerConfiguration = ImagePickerConfiguration()) {
         
         super.init(frame: frame)
@@ -96,6 +98,11 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.addSubview(titleView)
         
         
+        let selectionOperationView = SelectionOperationView(frame: CGRect.zero)
+        self.addSubview(selectionOperationView)
+        
+        self.selectionOperationView = selectionOperationView
+        
         self.reload()
         
     }
@@ -124,6 +131,11 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
                                             width: self.frame.size.width,
                                             height: self.frame.size.height - titleHeight - top)
+        
+        self.selectionOperationView?.frame = CGRect(x: 0,
+                                                    y: self.frame.size.height - 55,
+                                                    width: self.frame.size.width,
+                                                    height: 55)
         
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
