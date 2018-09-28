@@ -30,6 +30,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     var selectionOperationView: SelectionOperationView?
     
+    var selectionProcessMaskView: UIView?
+    
     public init(frame: CGRect, config: ImagePickerConfiguration = ImagePickerConfiguration()) {
         
         super.init(frame: frame)
@@ -101,13 +103,15 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.addSubview(titleView)
         
-        
+        // selection view
         let selectionOperationView = SelectionOperationView(frame: CGRect.zero)
-//        selectionOperationView.isHidden = true
+        selectionOperationView.isHidden = true
         
+        // confirm clicked
         selectionOperationView.confirmClicked = {
             
-            
+            self.selectionProcessMaskView?.isHidden = false
+            self.requestSelectedImages()
             
         }
         
@@ -122,6 +126,13 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.selectionOperationView = selectionOperationView
         
         self.reload()
+        
+        
+        let maskView = UIView()
+        maskView.isHidden = true
+        maskView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.addSubview(maskView)
+        self.selectionProcessMaskView = maskView
         
     }
     
@@ -153,7 +164,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
                                                 width: self.frame.size.width,
                                                 height: self.frame.size.height - titleHeight - top - 55)
-//            self.selectionOperationView?.isHidden = false
+            self.selectionOperationView?.isHidden = false
             self.selectionOperationView?.frame = CGRect(x: 0,
                                                         y: self.frame.size.height - 55,
                                                         width: self.frame.size.width,
@@ -164,13 +175,18 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
                                                 width: self.frame.size.width,
                                                 height: self.frame.size.height - titleHeight - top)
-//            self.selectionOperationView?.isHidden = true
+            self.selectionOperationView?.isHidden = true
             self.selectionOperationView?.frame = CGRect(x: 0,
                                                         y: self.frame.size.height,
                                                         width: self.frame.size.width,
                                                         height: 0)
             
         }
+        
+        self.selectionProcessMaskView?.frame = CGRect(x: 0,
+                                                      y: 0,
+                                                      width: self.frame.size.width,
+                                                      height: self.frame.size.height - 55)
         
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
@@ -393,10 +409,12 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     }
     
     var selectedIndex = [IndexPath]()
+    var disableSelection = false
     
     
     func deSeelctAllImages() {
         
+        self.selectionOperationView?.isHidden = true
         self.selectedIndex.removeAll()
         self.setNeedsLayout()
         self.collectionView?.reloadData()
@@ -512,6 +530,12 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             }
             
         })
+        
+    }
+    
+    func requestSelectedImages() {
+        
+        
         
     }
     

@@ -13,6 +13,9 @@ class SelectionOperationView: UIView {
     var btnConfirm: UIButton?
     var btnCancel: UIButton?
     
+    var activityIndicator : UIActivityIndicatorView?
+    var labelProcess: UILabel?
+    
     var confirmClicked: (() -> Void)?
     var cancelClicked: (() -> Void)?
     
@@ -43,6 +46,21 @@ class SelectionOperationView: UIView {
         self.addSubview(btnConfirm)
         self.btnConfirm = btnConfirm
         
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        indicator.isHidden = true
+        
+        self.addSubview(indicator)
+        
+        self.activityIndicator = indicator
+        
+        let labelProcess = UILabel(frame: CGRect.zero)
+        labelProcess.isHidden = true
+        labelProcess.font = UIFont.systemFont(ofSize: 15)
+        labelProcess.textColor = UIColor.white
+        labelProcess.text = "正在处理..."
+        self.addSubview(labelProcess)
+        
+        self.labelProcess = labelProcess
         
     }
     
@@ -59,10 +77,19 @@ class SelectionOperationView: UIView {
         self.btnCancel?.frame = CGRect(x: self.frame.size.width - 115, y: 0, width: 50, height: self.frame.size.height)
         self.btnConfirm?.frame = CGRect(x: self.frame.size.width - 60, y: 0, width: 50, height: self.frame.size.height)
         
+        self.activityIndicator?.frame = CGRect(x: self.frame.size.width - 140, y: self.frame.size.height / 2 - 15, width: 30, height: 30)
+        self.labelProcess?.frame = CGRect(x: self.frame.size.width - 105, y: 0, width: 90, height: self.frame.size.height)
+        
     }
     
     @objc func btnConfirmClicked() {
         
+        self.btnConfirm?.isHidden = true
+        self.btnCancel?.isHidden = true
+        
+        self.activityIndicator?.startAnimating()
+        self.activityIndicator?.isHidden = false
+        self.labelProcess?.isHidden = false
         self.confirmClicked?()
         
     }
