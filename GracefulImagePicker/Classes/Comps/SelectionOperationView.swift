@@ -84,12 +84,7 @@ class SelectionOperationView: UIView {
     
     @objc func btnConfirmClicked() {
         
-        self.btnConfirm?.isHidden = true
-        self.btnCancel?.isHidden = true
-        
-        self.activityIndicator?.startAnimating()
-        self.activityIndicator?.isHidden = false
-        self.labelProcess?.isHidden = false
+        self.stateLoadling()
         self.confirmClicked?()
         
     }
@@ -97,6 +92,30 @@ class SelectionOperationView: UIView {
     @objc func btnCancelClicked() {
         
         self.cancelClicked?()
+        
+    }
+    
+    // Loading UI
+    func stateLoadling() {
+        
+        self.btnConfirm?.isHidden = true
+        self.btnCancel?.isHidden = true
+        
+        
+        self.activityIndicator?.startAnimating()
+        self.activityIndicator?.isHidden = false
+        self.labelProcess?.isHidden = false
+        
+    }
+    
+    // Normal UI
+    func stateNormal() {
+        
+        self.btnConfirm?.isHidden = false
+        self.btnCancel?.isHidden = false
+        self.activityIndicator?.stopAnimating()
+        self.activityIndicator?.isHidden = true
+        self.labelProcess?.isHidden = true
         
     }
     

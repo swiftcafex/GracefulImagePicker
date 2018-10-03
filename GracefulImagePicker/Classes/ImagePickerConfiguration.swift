@@ -18,5 +18,7 @@ public class ImagePickerConfiguration: NSObject {
     public var titleBackground: UIColor?        // title view backgroud color
 
     public var mutipleSelection = false         // Multiple selection model
+    public var mutipleSelectionMaxLimit = 10    // select max limit
+    
     //    public var scrollToBottom = false               // auto scroll to list bottom when loaded
 }

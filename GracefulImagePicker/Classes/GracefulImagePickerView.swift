@@ -25,6 +25,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     public var backClicked: (() -> Void)?
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
+    public var multipleImageSelected: (([UIImage]) -> Void)?
     
     var pickerConfig: ImagePickerConfiguration?
     
@@ -413,7 +414,9 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     
     func deSeelctAllImages() {
-        
+    
+        self.selectionOperationView?.stateNormal()
+        self.selectionProcessMaskView?.isHidden = true
         self.selectionOperationView?.isHidden = true
         self.selectedIndex.removeAll()
         self.setNeedsLayout()
@@ -438,7 +441,17 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
             // if not select -> select it
             selectedIndex.append(indexPath)
-            cell.showSelection(tag: "\(selectedIndex.count)")
+            
+            for (i, index) in selectedIndex.enumerated() {
+            
+                if let cell = collectionView.cellForItem(at: index) as? ImageCollectionViewCell {
+                    
+                    cell.showSelection(tag: "\(i + 1)")
+                    
+                }
+            }
+            
+            
             
         }
         
@@ -535,7 +548,56 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     func requestSelectedImages() {
         
+        var requestIDList = [PHImageRequestID]()
         
+        var imageLoaded = [UIImage]()
+        
+        for index in self.selectedIndex {
+            
+            if let asset = self.assetResult[index.row].asset {
+            
+                let requestOptions = PHImageRequestOptions()
+                requestOptions.resizeMode = .exact
+                requestOptions.deliveryMode = .highQualityFormat
+                requestOptions.isNetworkAccessAllowed = true
+                
+                let requestID = PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFill, options: requestOptions,resultHandler: { (image, info) in
+                    
+                    print("finished")
+                    
+                    if let curID = info?[PHImageResultRequestIDKey] as? PHImageRequestID {
+                        
+                        // remove current item
+                        if let index = requestIDList.firstIndex(of: curID) {
+                            
+                            requestIDList.remove(at: index)
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    if let img = image {
+                        
+                        imageLoaded.append(img)
+                        
+                    }
+                    
+                    // all request finished
+                    if requestIDList.count == 0 {
+                        
+                        self.deSeelctAllImages()
+                        
+                    }
+                    
+                })
+                
+                requestIDList.append(requestID)
+                print("added request \(requestID)")
+                
+            }
+            
+        }
         
     }
     
