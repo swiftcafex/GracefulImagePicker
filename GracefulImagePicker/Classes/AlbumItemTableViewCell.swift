@@ -13,7 +13,7 @@ class AlbumItemTableViewCell: UITableViewCell {
     var titleLabel: UILabel?                // album title label
     var numberLabel: UILabel?               // album photo count label
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

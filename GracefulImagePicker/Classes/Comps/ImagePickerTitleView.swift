@@ -51,13 +51,13 @@ public class ImagePickerTitleView: UIView {
         if config.style == ImagePickerStyle.Black {
             
             self.backgroundColor = UIColor.black
-            self.btnBack?.setImage(ImageLoader.image(named: "picker_back"), for: UIControlState.normal)
+            self.btnBack?.setImage(ImageLoader.image(named: "picker_back"), for: .normal)
             self.titleLabel?.textColor = UIColor.white
             
         } else if config.style == ImagePickerStyle.White {
             
             self.backgroundColor = UIColor.white
-            self.btnBack?.setImage(ImageLoader.image(named: "picker_back_blk"), for: UIControlState.normal)
+            self.btnBack?.setImage(ImageLoader.image(named: "picker_back_blk"), for: .normal)
             self.titleLabel?.textColor = UIColor.black
             
         }
@@ -106,13 +106,13 @@ public class ImagePickerTitleView: UIView {
         
         // init gobcck button
         let btnBack = UIButton(frame: CGRect.zero)
-        btnBack.addTarget(self, action: #selector(self.btnBackClicked), for: UIControlEvents.touchUpInside)
+        btnBack.addTarget(self, action: #selector(self.btnBackClicked), for: .touchUpInside)
         self.addSubview(btnBack)
         self.btnBack = btnBack
      
         
         let btnAlbum = UIButton(frame: CGRect.zero)
-        btnAlbum.addTarget(self, action: #selector(self.albumOpenClicked), for: UIControlEvents.touchUpInside)
+        btnAlbum.addTarget(self, action: #selector(self.albumOpenClicked), for: .touchUpInside)
         self.addSubview(btnAlbum)
         self.btnAlbum = btnAlbum
     }
@@ -133,7 +133,7 @@ public class ImagePickerTitleView: UIView {
         
             if let labelText = self.titleLabel?.text {
                 
-                let size = (labelText as NSString).size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
+                let size = (labelText as NSString).size(withAttributes: [.font: titleLabel.font])
                 titleLabel.frame = CGRect(x: 0, y: 0, width: size.width, height: 30)
                 titleLabel.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - contentHeight / 2)
                 

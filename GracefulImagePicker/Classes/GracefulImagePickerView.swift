@@ -278,7 +278,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             })
             
             self.collectionView?.reloadData()
-            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult.count - 1, section: 0), at: UICollectionViewScrollPosition.bottom, animated: false)
+            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult.count - 1, section: 0), at: .bottom, animated: false)
             
         }
         
