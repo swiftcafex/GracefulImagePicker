@@ -15,6 +15,7 @@ open class GracefulImagePickerViewController: UIViewController {
     var config: ImagePickerConfiguration?
     
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
+    public var multipleImageSelected: (([UIImage]) -> Void)?
     
     public init(config: ImagePickerConfiguration) {
         
@@ -63,6 +64,12 @@ open class GracefulImagePickerViewController: UIViewController {
         self.imagePickerView?.imageSelected = { image, asset in
             
             self.imageSelected?(image, asset)
+            
+        }
+        
+        self.imagePickerView?.multipleImageSelected = { image in
+            
+            self.multipleImageSelected?(image)
             
         }
         

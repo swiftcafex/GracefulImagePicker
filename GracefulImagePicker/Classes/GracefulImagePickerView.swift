@@ -128,7 +128,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.reload()
         
-        
         let maskView = UIView()
         maskView.isHidden = true
         maskView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -586,7 +585,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                             
                         }
                         
-                        
                     }
                     
                     if let img = image {
@@ -599,13 +597,13 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                     if requestIDList.count == 0 {
                         
                         self.deSeelctAllImages()
+                        self.multipleImageSelected?(imageLoaded)
                         
                     }
                     
                 })
                 
                 requestIDList.append(requestID)
-                print("added request \(requestID)")
                 
             }
             

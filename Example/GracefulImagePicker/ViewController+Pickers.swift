@@ -86,8 +86,14 @@ extension ViewController {
         config.mutipleSelection = true
         
         let pickerVC = GracefulImagePickerViewController(config: config)
-        pickerVC.imageSelected = self.imageSelected
+        pickerVC.multipleImageSelected = { images in
+            
+            print("image selected: \(images.count)")
+            
+        }
         pickerVC.imagePickerView?.titleView?.btnBack?.isHidden = true
+        
+        
         self.navigationController?.pushViewController(pickerVC, animated: true)
         
     }
