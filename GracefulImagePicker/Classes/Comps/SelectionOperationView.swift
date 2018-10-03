@@ -27,6 +27,7 @@ class SelectionOperationView: UIView {
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = "已选中"
         titleLabel.textColor = UIColor.white
+        titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 16)
         self.addSubview(titleLabel)
         self.titleLabel = titleLabel
@@ -116,6 +117,24 @@ class SelectionOperationView: UIView {
         self.activityIndicator?.stopAnimating()
         self.activityIndicator?.isHidden = true
         self.labelProcess?.isHidden = true
+        
+    }
+    
+    func flashTitleLabel() {
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            
+            self.titleLabel?.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 15)
+            
+        }) { (success) in
+            
+            UIView.animate(withDuration: 0.1, animations: {
+            
+                self.titleLabel?.transform = CGAffineTransform.identity
+                
+            })
+            
+        }
         
     }
     

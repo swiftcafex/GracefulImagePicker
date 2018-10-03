@@ -439,6 +439,20 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         } else {
             
+            if let maxLimit = self.pickerConfig?.mutipleSelectionMaxLimit {
+             
+                if selectedIndex.count >= maxLimit {
+                    
+                    // exceed max limit select count
+                   self.selectionOperationView?.flashTitleLabel()
+                    self.selectionOperationView?.titleLabel?.text = "最多可选 \(selectedIndex.count) 张图片"
+                    self.setNeedsLayout()
+                    return
+                    
+                }
+                
+            }
+            
             // if not select -> select it
             selectedIndex.append(indexPath)
             
@@ -562,8 +576,6 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                 requestOptions.isNetworkAccessAllowed = true
                 
                 let requestID = PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFill, options: requestOptions,resultHandler: { (image, info) in
-                    
-                    print("finished")
                     
                     if let curID = info?[PHImageResultRequestIDKey] as? PHImageRequestID {
                         

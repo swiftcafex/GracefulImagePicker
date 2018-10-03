@@ -87,6 +87,7 @@ extension ViewController {
         
         let pickerVC = GracefulImagePickerViewController(config: config)
         pickerVC.imageSelected = self.imageSelected
+        pickerVC.imagePickerView?.titleView?.btnBack?.isHidden = true
         self.navigationController?.pushViewController(pickerVC, animated: true)
         
     }
