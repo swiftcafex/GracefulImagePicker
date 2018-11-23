@@ -24,6 +24,11 @@
 		1029F5352126BFF8007E7A77 /* AlbumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1029F5332126BFF8007E7A77 /* AlbumCollection.swift */; };
 		1029F5362126BFF8007E7A77 /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1029F5342126BFF8007E7A77 /* PhotoAsset.swift */; };
 		1029F5392126C014007E7A77 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1029F5382126C014007E7A77 /* ImageLoader.swift */; };
+		10330F5A21A72FD700EFC0AF /* RequestPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10330F5921A72FD700EFC0AF /* RequestPermissionView.swift */; };
+		10330F5D21A759EB00EFC0AF /* perm_title@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10330F5B21A759EA00EFC0AF /* perm_title@3x.png */; };
+		10330F5E21A759EB00EFC0AF /* perm_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10330F5C21A759EA00EFC0AF /* perm_title@2x.png */; };
+		10330F5F21A759F500EFC0AF /* perm_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10330F5C21A759EA00EFC0AF /* perm_title@2x.png */; };
+		10330F6021A759F500EFC0AF /* perm_title@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10330F5B21A759EA00EFC0AF /* perm_title@3x.png */; };
 		10B8582AA769573FDD581D099D4F78CF /* Pods-GracefulImagePicker_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E68AD7E23026C6197B48B9A278DC5 /* Pods-GracefulImagePicker_Tests-dummy.m */; };
 		11D6488AEBD41CE070FEF94EB9A62DCB /* btn_open_album_blk@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 627B9FC26CF4EAB62C7484916DE77636 /* btn_open_album_blk@3x.png */; };
 		14A0B914C8A7F8EEE1317349A990C581 /* CircleProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F4F33EDB2EEF494098B0D705BD8947 /* CircleProgressBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -326,6 +331,9 @@
 		1029F5332126BFF8007E7A77 /* AlbumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollection.swift; path = GracefulImagePicker/Classes/AlbumCollection.swift; sourceTree = "<group>"; };
 		1029F5342126BFF8007E7A77 /* PhotoAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoAsset.swift; path = GracefulImagePicker/Classes/PhotoAsset.swift; sourceTree = "<group>"; };
 		1029F5382126C014007E7A77 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageLoader.swift; path = GracefulImagePicker/Classes/ImageLoader.swift; sourceTree = "<group>"; };
+		10330F5921A72FD700EFC0AF /* RequestPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPermissionView.swift; sourceTree = "<group>"; };
+		10330F5B21A759EA00EFC0AF /* perm_title@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "perm_title@3x.png"; path = "GracefulImagePicker/Assets/perm_title@3x.png"; sourceTree = "<group>"; };
+		10330F5C21A759EA00EFC0AF /* perm_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "perm_title@2x.png"; path = "GracefulImagePicker/Assets/perm_title@2x.png"; sourceTree = "<group>"; };
 		10D7BBE3F57D9AB85DF15A2E16BD5279 /* Stringers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stringers.swift; path = Sources/Nimble/Utils/Stringers.swift; sourceTree = "<group>"; };
 		121E89248F6AFD7F4BC61298B177F0FF /* mach_excServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mach_excServer.h; path = Sources/Lib/CwlPreconditionTesting/CwlMachBadInstructionHandler/mach_excServer.h; sourceTree = "<group>"; };
 		13BDFD2FF1979CF1B81FC08F41076984 /* Nimble.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nimble.xcconfig; sourceTree = "<group>"; };
@@ -881,6 +889,8 @@
 		6EA638024D8599D52E822145C35914ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				10330F5C21A759EA00EFC0AF /* perm_title@2x.png */,
+				10330F5B21A759EA00EFC0AF /* perm_title@3x.png */,
 				370D450120B298BC05C7D08AD9051278 /* btn_close_album.png */,
 				5E52EC21B5A666F4D9E029D153CDE9BA /* btn_close_album@2x.png */,
 				147B320060B2311BE0962236714941C9 /* btn_close_album@3x.png */,
@@ -912,6 +922,7 @@
 				6F164E92215604F500A9F305 /* ImagePickerTitleView.swift */,
 				6F164E93215604F500A9F305 /* AlbumListView.swift */,
 				6F920DEC2157E87B0076D4DE /* SelectionOperationView.swift */,
+				10330F5921A72FD700EFC0AF /* RequestPermissionView.swift */,
 			);
 			name = Comps;
 			path = GracefulImagePicker/Classes/Comps;
@@ -1441,10 +1452,12 @@
 				F572F8FFFA84254DADA0C0DD1867A774 /* btn_open_album@3x.png in Resources */,
 				A349F101F848762B6C322C2439C59532 /* btn_open_album_blk.png in Resources */,
 				0BE577F39496EFE5666BC62CE9DB6DDA /* btn_open_album_blk@2x.png in Resources */,
+				10330F5E21A759EB00EFC0AF /* perm_title@2x.png in Resources */,
 				FE0C1EFAF98EF5E52EECC458F1812EEA /* btn_open_album_blk@3x.png in Resources */,
 				90B93B9B7DCEBD50AB5AA28D60992A33 /* GracefulImagePicker.bundle in Resources */,
 				FD4191C4C2E4E88E7116C10A4F396BDD /* in_cloud.png in Resources */,
 				039098EC620F783CDAA779C270793D7A /* in_cloud@2x.png in Resources */,
+				10330F5D21A759EB00EFC0AF /* perm_title@3x.png in Resources */,
 				5E991F0E8C63BB80BBB899298267DABA /* in_cloud@3x.png in Resources */,
 				C9DA5661298719913F8BD0D2C3FCB9C3 /* picker_back.png in Resources */,
 				2D316B01919159B3848AB16DD05CA406 /* picker_back@2x.png in Resources */,
@@ -1474,8 +1487,10 @@
 				9D2F00D2E84AD8B1106140446F0D5E53 /* in_cloud.png in Resources */,
 				9C9690E0F111FC824B51BEB67AD93CF8 /* in_cloud@2x.png in Resources */,
 				298DA44CDC810F0E197E54D1051DEC8A /* in_cloud@3x.png in Resources */,
+				10330F6021A759F500EFC0AF /* perm_title@3x.png in Resources */,
 				5E7CDAA754BD1085B842D23995BF0ED9 /* picker_back.png in Resources */,
 				F3836E839C3F1AD3767CF8A31919CC9E /* picker_back@2x.png in Resources */,
+				10330F5F21A759F500EFC0AF /* perm_title@2x.png in Resources */,
 				A5E5805C2C52B4ADDD6197776D9C3E56 /* picker_back@3x.png in Resources */,
 				8CC05896C6E8D911C90DC30C1A8CD712 /* picker_back_blk.png in Resources */,
 				2D902CB58E4B0BD7923F8BAA342B09A6 /* picker_back_blk@2x.png in Resources */,
@@ -1657,6 +1672,7 @@
 			files = (
 				1029F52E2126BFCF007E7A77 /* ImageCollectionViewCell.swift in Sources */,
 				1029F5352126BFF8007E7A77 /* AlbumCollection.swift in Sources */,
+				10330F5A21A72FD700EFC0AF /* RequestPermissionView.swift in Sources */,
 				9E0FFD606883818512D031A649F2507C /* GracefulImagePicker-dummy.m in Sources */,
 				6F164E94215604F500A9F305 /* ImagePickerTitleView.swift in Sources */,
 				2792424EA3C44BF3608266CBDC4F4CA1 /* GracefulImagePickerView.swift in Sources */,

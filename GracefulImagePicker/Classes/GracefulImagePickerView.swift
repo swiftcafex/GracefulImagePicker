@@ -10,6 +10,8 @@ import Photos
 
 public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    var requestPermissionView : RequestPermissionView?
+    
     var collectionView : UICollectionView?
     var collectionLayout : UICollectionViewFlowLayout?
     var sizeWidth: CGFloat = 0.0
@@ -134,6 +136,12 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.addSubview(maskView)
         self.selectionProcessMaskView = maskView
         
+        
+        let permissionView = RequestPermissionView()
+        self.requestPermissionView = permissionView
+        
+        self.addSubview(permissionView)
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -191,6 +199,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         sizeWidth = self.frame.size.width / 4 - 4
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
         
+        self.requestPermissionView?.frame = CGRect(x: 0, y: titleHeight + top, width: self.frame.size.width, height: self.frame.size.height - titleHeight - top)
+        
     }
     
     func showAlbumList() {
@@ -224,17 +234,27 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     public func reload() {
         
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+           
+            if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.denied {
+                
+                // if denied
+                print("denied")
+                
+            } else {
             
-            //if not authorized
-            PHPhotoLibrary.requestAuthorization({ (status) in
-                
-                DispatchQueue.main.async {
-                 
-                    self.reload()
+                //if not authorized
+                PHPhotoLibrary.requestAuthorization({ (status) in
                     
-                }
+                    DispatchQueue.main.async {
+                        
+                        self.reload()
+                        
+                    }
+                    
+                })
                 
-            })
+            }
+            
             
         } else {
         
@@ -559,6 +579,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
+    
+    ///
     func requestSelectedImages() {
         
         var requestIDList = [PHImageRequestID]()
