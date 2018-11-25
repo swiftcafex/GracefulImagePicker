@@ -128,7 +128,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.selectionOperationView = selectionOperationView
         
-        self.reload()
+        
         
         let maskView = UIView()
         maskView.isHidden = true
@@ -138,9 +138,12 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         
         let permissionView = RequestPermissionView()
+        permissionView.isHidden = true
         self.requestPermissionView = permissionView
         
         self.addSubview(permissionView)
+        
+        self.reload()
         
     }
     
@@ -233,12 +236,14 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     // Load photos from album
     public func reload() {
         
+        self.requestPermissionView?.isHidden = true
+        
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
            
             if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.denied {
                 
                 // if denied
-                print("denied")
+                self.requestPermissionView?.isHidden = false
                 
             } else {
             
