@@ -143,7 +143,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
         self.addSubview(permissionView)
         
-        self.reload()
+//        self.reload()
         
     }
     
