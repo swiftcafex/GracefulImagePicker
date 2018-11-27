@@ -316,6 +316,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         } else {
         
             // load album and photos
+            // if first load
             self.loadAlbums()
             
             if self.albumList.count == 0 {
@@ -324,11 +325,21 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                 self.emptyAlbumView?.isHidden = false
                 
             } else {
-            
+                
                 self.albumListView?.bindAlbums(albumList: self.albumList)
-                self.loadPhotos(album: self.albumList.first)
+                
+                if let currentAlbum = self.currentAlbum {
+                    
+                    self.loadPhotos(album: currentAlbum)
+                    
+                } else {
+                
+                    self.loadPhotos(album: self.albumList.first)
+                }
                 
             }
+            
+            
             
             
         }
@@ -366,7 +377,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             })
             
             self.collectionView?.reloadData()
-            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult.count - 1, section: 0), at: .bottom, animated: false)
+//            self.collectionView?.scrollToItem(at: IndexPath(row: self.assetResult.count - 1, section: 0), at: .bottom, animated: false)
             
         }
         
@@ -375,6 +386,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     // 加载所有相册列表
     func loadAlbums() {
         
+        self.albumList.removeAll()
         let options = PHFetchOptions()
         
         // smart album, dynamic calc count
