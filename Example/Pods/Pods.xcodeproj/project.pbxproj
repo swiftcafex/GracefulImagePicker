@@ -18,6 +18,7 @@
 		0A2CA8B0DD7E300ABFCF1956E6B58248 /* Nimble.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E1EF344BD73897D06D73DBFD90A0E3 /* Nimble.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AE1AE9808EE6A559052B9FFDBAE0FDE /* World.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DCB9E0FE8DAEC356FBCC801E37243C /* World.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0BE577F39496EFE5666BC62CE9DB6DDA /* btn_open_album_blk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF355512E744F2539D8EA804AEAAE45 /* btn_open_album_blk@2x.png */; };
+		10298D8021ADDBF60063135D /* EmptyAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10298D7F21ADDBF60063135D /* EmptyAlbumView.swift */; };
 		1029F52D2126BFCF007E7A77 /* AlbumItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1029F52B2126BFCE007E7A77 /* AlbumItemTableViewCell.swift */; };
 		1029F52E2126BFCF007E7A77 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1029F52C2126BFCF007E7A77 /* ImageCollectionViewCell.swift */; };
 		1029F5312126BFDB007E7A77 /* ImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1029F5302126BFDA007E7A77 /* ImagePickerConfiguration.swift */; };
@@ -325,6 +326,7 @@
 		0CC4CEDDC3E5BD04F63096F91342218D /* ToSucceed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToSucceed.swift; path = Sources/Nimble/Matchers/ToSucceed.swift; sourceTree = "<group>"; };
 		0DF7140B76BFF1F519B5C7910EAF3206 /* CwlCatchException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlCatchException.h; path = Sources/Lib/CwlPreconditionTesting/CwlCatchExceptionSupport/include/CwlCatchException.h; sourceTree = "<group>"; };
 		0FB89A2EB340BF5D8A4AB2FEA545F444 /* AssertionDispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionDispatcher.swift; path = Sources/Nimble/Adapters/AssertionDispatcher.swift; sourceTree = "<group>"; };
+		10298D7F21ADDBF60063135D /* EmptyAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAlbumView.swift; sourceTree = "<group>"; };
 		1029F52B2126BFCE007E7A77 /* AlbumItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumItemTableViewCell.swift; path = GracefulImagePicker/Classes/AlbumItemTableViewCell.swift; sourceTree = "<group>"; };
 		1029F52C2126BFCF007E7A77 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCollectionViewCell.swift; path = GracefulImagePicker/Classes/ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		1029F5302126BFDA007E7A77 /* ImagePickerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePickerConfiguration.swift; path = GracefulImagePicker/Classes/ImagePickerConfiguration.swift; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 				6F164E93215604F500A9F305 /* AlbumListView.swift */,
 				6F920DEC2157E87B0076D4DE /* SelectionOperationView.swift */,
 				10330F5921A72FD700EFC0AF /* RequestPermissionView.swift */,
+				10298D7F21ADDBF60063135D /* EmptyAlbumView.swift */,
 			);
 			name = Comps;
 			path = GracefulImagePicker/Classes/Comps;
@@ -1676,6 +1679,7 @@
 				9E0FFD606883818512D031A649F2507C /* GracefulImagePicker-dummy.m in Sources */,
 				6F164E94215604F500A9F305 /* ImagePickerTitleView.swift in Sources */,
 				2792424EA3C44BF3608266CBDC4F4CA1 /* GracefulImagePickerView.swift in Sources */,
+				10298D8021ADDBF60063135D /* EmptyAlbumView.swift in Sources */,
 				6F920DEE2157E9960076D4DE /* SelectionOperationView.swift in Sources */,
 				1029F5362126BFF8007E7A77 /* PhotoAsset.swift in Sources */,
 				1029F5312126BFDB007E7A77 /* ImagePickerConfiguration.swift in Sources */,

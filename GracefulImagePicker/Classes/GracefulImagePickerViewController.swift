@@ -72,7 +72,7 @@ open class GracefulImagePickerViewController: UIViewController {
             self.multipleImageSelected?(image)
             
         }
-        self.imagePickerView?.reload()
+        
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -81,6 +81,7 @@ open class GracefulImagePickerViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.setNeedsStatusBarAppearanceUpdate()
+        self.imagePickerView?.reload()
         
     }
     

@@ -12,6 +12,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
 
     
     var requestPermissionView : RequestPermissionView?          // Permission View
+    var emptyAlbumView : EmptyAlbumView?                        // Empty Album View
     
     var collectionView : UICollectionView?
     var collectionLayout : UICollectionViewFlowLayout?
@@ -45,20 +46,23 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.pickerConfig = config
         self.backgroundColor = UIColor.white
         
-        /// Collection View - Start
+        /// Collection View
         self.createCollectionView()
         
-        /// Album List View - Start
+        /// Album List View
         self.createAlbumListView()
         
-        // Title View - Start
+        // Title View
         self.createTitleView(config: config)
         
-        // Selection View - Start
+        // Selection View
        self.createSelectionView()
         
-        // Permission View - Start
+        // Permission View
         self.createPermissionView()
+        
+        // Empty View
+        self.createEmptyView()
         
     }
     
@@ -118,6 +122,8 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         self.collectionLayout?.itemSize = CGSize(width: sizeWidth, height: sizeWidth)
         
         self.requestPermissionView?.frame = CGRect(x: 0, y: titleHeight + top, width: self.frame.size.width, height: self.frame.size.height - titleHeight - top)
+        self.emptyAlbumView?.frame = CGRect(x: 0, y: titleHeight + top, width: self.frame.size.width, height: self.frame.size.height - titleHeight - top)
+        
         
     }
     
@@ -239,6 +245,17 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
+    // Create Empty View
+    func createEmptyView() {
+        
+        let emptyView = EmptyAlbumView()
+        emptyView.isHidden = true
+        self.emptyAlbumView = emptyView
+        
+        self.addSubview(emptyView)
+        
+    }
+    
     
     // MARK: Show and Hide Album List
     func showAlbumList() {
@@ -272,17 +289,18 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     public func reload() {
         
         self.requestPermissionView?.isHidden = true
+        self.emptyAlbumView?.isHidden = true
         
         if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
            
             if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.denied {
                 
-                // if denied
+                // if denied, show permission view
                 self.requestPermissionView?.isHidden = false
                 
             } else {
             
-                //if not authorized
+                //if not authorized, request permission
                 PHPhotoLibrary.requestAuthorization({ (status) in
                     
                     DispatchQueue.main.async {
@@ -295,12 +313,23 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                 
             }
             
-            
         } else {
         
-            self.loadAlbums()            
-            self.albumListView?.bindAlbums(albumList: self.albumList)
-            loadPhotos(album: self.albumList.first)
+            // load album and photos
+            self.loadAlbums()
+            
+            if self.albumList.count == 0 {
+                
+                // no photos
+                self.emptyAlbumView?.isHidden = false
+                
+            } else {
+            
+                self.albumListView?.bindAlbums(albumList: self.albumList)
+                self.loadPhotos(album: self.albumList.first)
+                
+            }
+            
             
         }
         
