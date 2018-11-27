@@ -10,7 +10,8 @@ import Photos
 
 public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    var requestPermissionView : RequestPermissionView?
+    
+    var requestPermissionView : RequestPermissionView?          // Permission View
     
     var collectionView : UICollectionView?
     var collectionLayout : UICollectionViewFlowLayout?
@@ -32,118 +33,32 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     var pickerConfig: ImagePickerConfiguration?
     
     var selectionOperationView: SelectionOperationView?
-    
     var selectionProcessMaskView: UIView?
+    
+    
+    //MARK: UIView Life Cycle
     
     public init(frame: CGRect, config: ImagePickerConfiguration = ImagePickerConfiguration()) {
         
         super.init(frame: frame)
         
         self.pickerConfig = config
-        
         self.backgroundColor = UIColor.white
         
-        // Collection View
-        let collectionLayout = UICollectionViewFlowLayout()
-        	
-        collectionLayout.minimumLineSpacing = 2
-        collectionLayout.minimumInteritemSpacing = 2
-        collectionLayout.sectionInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        /// Collection View - Start
+        self.createCollectionView()
         
-        self.collectionLayout = collectionLayout
+        /// Album List View - Start
+        self.createAlbumListView()
         
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionLayout)
-        self.addSubview(collectionView)
-        collectionView.contentInset = UIEdgeInsets.zero
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor(red: 249.0 / 255.0, green: 249.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
-        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        // Title View - Start
+        self.createTitleView(config: config)
         
-        self.collectionView = collectionView
+        // Selection View - Start
+       self.createSelectionView()
         
-        let albumListView = AlbumListView(frame: CGRect.zero)
-        albumListView.callbackAlbumChanged = { album in
-            
-            // change 
-            self.loadPhotos(album: album)
-            self.hideAlbumList()
-            self.titleView?.changeToOpen()
-            
-        }
-    
-        self.addSubview(albumListView)
-        
-        self.albumListView = albumListView
-        
-        
-        // Title View
-        let titleView = ImagePickerTitleView(frame: CGRect.zero, config: config)
-        
-        self.titleView = titleView
-        
-        self.titleView?.callbackCloseAlbum = {
-            
-            self.hideAlbumList()
-            
-        }
-        
-        self.titleView?.callbackOpenAlbum = {
-            
-            self.deSeelctAllImages()
-            self.layoutSubviews()
-            
-            self.showAlbumList()
-            
-            
-        }
-        
-        self.titleView?.backClicked = {
-            
-            self.backClicked?()
-            
-        }
-        
-        self.addSubview(titleView)
-        
-        // selection view
-        let selectionOperationView = SelectionOperationView(frame: CGRect.zero)
-        selectionOperationView.isHidden = true
-        
-        // confirm clicked
-        selectionOperationView.confirmClicked = {
-            
-            self.selectionProcessMaskView?.isHidden = false
-            self.requestSelectedImages()
-            
-        }
-        
-        selectionOperationView.cancelClicked = {
-            
-            self.deSeelctAllImages()
-            
-        }
-        
-        self.addSubview(selectionOperationView)
-        
-        self.selectionOperationView = selectionOperationView
-        
-        
-        
-        let maskView = UIView()
-        maskView.isHidden = true
-        maskView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.addSubview(maskView)
-        self.selectionProcessMaskView = maskView
-        
-        
-        let permissionView = RequestPermissionView()
-        permissionView.isHidden = true
-        self.requestPermissionView = permissionView
-        
-        self.addSubview(permissionView)
-        
-//        self.reload()
+        // Permission View - Start
+        self.createPermissionView()
         
     }
     
@@ -206,6 +121,126 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
+    // MARK: Setup Views
+    
+    
+    /// Create Collection View
+    func createCollectionView() {
+        
+        // Collection Layout
+        let collectionLayout = UICollectionViewFlowLayout()
+        collectionLayout.minimumLineSpacing = 2
+        collectionLayout.minimumInteritemSpacing = 2
+        collectionLayout.sectionInset = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        self.collectionLayout = collectionLayout
+        
+        // Collection View
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionLayout)
+        self.addSubview(collectionView)
+        collectionView.contentInset = UIEdgeInsets.zero
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor(red: 249.0 / 255.0, green: 249.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
+        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        self.collectionView = collectionView
+        
+    }
+    
+    
+    /// Create Album List View
+    func createAlbumListView() {
+        
+        let albumListView = AlbumListView(frame: CGRect.zero)
+        albumListView.callbackAlbumChanged = { album in
+            
+            // change
+            self.loadPhotos(album: album)
+            self.hideAlbumList()
+            self.titleView?.changeToOpen()
+            
+        }
+        
+        self.addSubview(albumListView)
+        self.albumListView = albumListView
+        
+    }
+    
+    // Create Title View
+    func createTitleView(config: ImagePickerConfiguration) {
+        
+        let titleView = ImagePickerTitleView(frame: CGRect.zero, config: config)
+        self.titleView = titleView
+        
+        self.titleView?.callbackCloseAlbum = {
+            
+            self.hideAlbumList()
+            
+        }
+        
+        self.titleView?.callbackOpenAlbum = {
+            
+            self.deSeelctAllImages()
+            self.layoutSubviews()
+            self.showAlbumList()
+            
+        }
+        
+        self.titleView?.backClicked = {
+            
+            self.backClicked?()
+            
+        }
+        
+        self.addSubview(titleView)
+        
+    }
+    
+    // Create Selection View
+    func createSelectionView() {
+     
+        let selectionOperationView = SelectionOperationView(frame: CGRect.zero)
+        selectionOperationView.isHidden = true
+        
+        // Confirm Clicked
+        selectionOperationView.confirmClicked = {
+            
+            self.selectionProcessMaskView?.isHidden = false
+            self.requestSelectedImages()
+            
+        }
+        
+        // Cancel Clicked
+        selectionOperationView.cancelClicked = {
+            
+            self.deSeelctAllImages()
+            
+        }
+        
+        self.addSubview(selectionOperationView)
+        
+        self.selectionOperationView = selectionOperationView
+        
+        let maskView = UIView()
+        maskView.isHidden = true
+        maskView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.addSubview(maskView)
+        self.selectionProcessMaskView = maskView
+        
+    }
+    
+    // Create Permission View
+    func createPermissionView() {
+        
+        let permissionView = RequestPermissionView()
+        permissionView.isHidden = true
+        self.requestPermissionView = permissionView
+        
+        self.addSubview(permissionView)
+        
+    }
+    
+    
+    // MARK: Show and Hide Album List
     func showAlbumList() {
     
         self.albumListView?.selectedAlbum = self.currentAlbum
@@ -231,7 +266,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         
     }
     
-    // MARK: Photos
+    // MARK: Photos Management
     
     // Load photos from album
     public func reload() {
@@ -263,8 +298,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
             
         } else {
         
-            self.loadAlbums()
-            
+            self.loadAlbums()            
             self.albumListView?.bindAlbums(albumList: self.albumList)
             loadPhotos(album: self.albumList.first)
             
@@ -432,6 +466,9 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         }
         
     }
+    
+    
+    // MARK: Handle Mutiple Selection
     
     var selectedIndex = [IndexPath]()
     var disableSelection = false

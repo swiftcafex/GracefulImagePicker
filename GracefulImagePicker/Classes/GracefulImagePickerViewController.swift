@@ -87,7 +87,6 @@ open class GracefulImagePickerViewController: UIViewController {
     open override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        self.imagePickerView?.reload()
         
     }
     
