@@ -47,7 +47,7 @@ class SelectionOperationView: UIView {
         self.addSubview(btnConfirm)
         self.btnConfirm = btnConfirm
         
-        let indicator = UIActivityIndicatorView(style: .white)
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         indicator.isHidden = true
         
         self.addSubview(indicator)

@@ -68,7 +68,7 @@ class EmptyAlbumView: UIView {
     
     @objc func confirmClicked() {
         
-        if let url = URL(string: UIApplication.openSettingsURLString) {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
             
             UIApplication.shared.openURL(url)
             

@@ -26,6 +26,7 @@ extension ViewController {
     func presentWhiteStyle() {
         
         let pickerVC = GracefulImagePickerViewController()
+        pickerVC.modalPresentationStyle = .fullScreen
         self.present(pickerVC, animated: true, completion: nil)
         
     }
@@ -36,6 +37,7 @@ extension ViewController {
         let config = ImagePickerConfiguration()
         config.style = .Black
         let pickerVC = GracefulImagePickerViewController(config: config)
+        pickerVC.modalPresentationStyle = .fullScreen
         self.present(pickerVC, animated: true, completion: nil)
         
     }

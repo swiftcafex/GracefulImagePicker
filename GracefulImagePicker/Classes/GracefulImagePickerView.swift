@@ -602,7 +602,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         var analyticsSent = false
         
         let requestOptions = PHImageRequestOptions()
-        requestOptions.resizeMode = .exact
+        requestOptions.resizeMode = .none
         requestOptions.deliveryMode = .highQualityFormat
         requestOptions.isNetworkAccessAllowed = true
         requestOptions.progressHandler = { progress, error, stop, info in
