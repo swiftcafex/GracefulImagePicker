@@ -82,7 +82,7 @@ class RequestPermissionView: UIView {
     
     @objc func confirmClicked() {        
         
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
 
             UIApplication.shared.openURL(url)
             
