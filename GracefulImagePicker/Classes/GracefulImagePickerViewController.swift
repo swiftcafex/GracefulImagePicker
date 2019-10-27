@@ -103,14 +103,14 @@ open class GracefulImagePickerViewController: UIViewController {
         
         super.viewWillLayoutSubviews()
         print("layout view controller")
-        var top = CGFloat(20)
-        
-        if #available(iOS 11.0, *) {
-            
-            top = self.view.safeAreaInsets.top
-            
-        }
-        
+//        var top = CGFloat(20)
+//        
+//        if #available(iOS 11.0, *) {
+//            
+//            top = self.view.safeAreaInsets.top
+//            
+//        }
+//        
         self.imagePickerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
     }
