@@ -88,7 +88,7 @@ extension ViewController {
         config.mutipleSelection = true
         
         let pickerVC = GracefulImagePickerViewController(config: config)
-        pickerVC.multipleImageSelected = { images in
+        pickerVC.multipleImageSelected = { images, assets in
             
             print("image selected: \(images.count)")
             

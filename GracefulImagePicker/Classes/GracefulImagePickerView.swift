@@ -29,7 +29,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
     
     public var backClicked: (() -> Void)?
     public var imageSelected: ((UIImage,PHAsset) -> Void)?
-    public var multipleImageSelected: (([UIImage]) -> Void)?
+    public var multipleImageSelected: (([UIImage],[PHAsset]) -> Void)?
     
     var pickerConfig: ImagePickerConfiguration?
     
@@ -669,6 +669,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         var requestIDList = [PHImageRequestID]()
         
         var imageLoaded = [UIImage]()
+        var assetsLoated = [PHAsset]()
         
         for index in self.selectedIndex {
             
@@ -695,6 +696,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                     if let img = image {
                         
                         imageLoaded.append(img)
+                        assetsLoated.append(asset)
                         
                     }
                     
@@ -702,7 +704,7 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                     if requestIDList.count == 0 {
                         
                         self.deSeelctAllImages()
-                        self.multipleImageSelected?(imageLoaded)
+                        self.multipleImageSelected?(imageLoaded, assetsLoated)
                         
                     }
                     
