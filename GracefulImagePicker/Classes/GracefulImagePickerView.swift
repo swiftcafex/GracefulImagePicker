@@ -77,34 +77,41 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         super.layoutSubviews()
         
         var top = CGFloat(20)
+        var bottom = CGFloat(0)
         
         if #available(iOS 11.0, *) {
             
             top = self.safeAreaInsets.top
+            bottom = self.safeAreaInsets.bottom
             
         }
         
         let titleHeight = CGFloat(44)
         self.titleView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: titleHeight + top)
         
+        
+        let collectionStartX = CGFloat(0)
+        let collectionStartY = titleHeight + top
+        let collectionWidth = self.frame.size.width
+        let collectionHeight = self.frame.size.height - collectionStartY;
+                
+        let operationHeight = (self.selectionOperationView?.suggestedHeight ?? 0) + bottom
+        let collectionHeightWithOperation = collectionHeight - operationHeight
+        
         if self.pickerConfig?.mutipleSelection ?? false && self.selectedIndex.count > 0 {
             
             //mutiple selected
             
-            self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
-                                                width: self.frame.size.width,
-                                                height: self.frame.size.height - titleHeight - top - 55)
+            self.collectionView?.frame = CGRect(x: collectionStartX, y: collectionStartY, width: collectionWidth, height: collectionHeightWithOperation)
             self.selectionOperationView?.isHidden = false
             self.selectionOperationView?.frame = CGRect(x: 0,
-                                                        y: self.frame.size.height - 55,
+                                                        y: self.frame.size.height - operationHeight,
                                                         width: self.frame.size.width,
-                                                        height: 55)
+                                                        height: operationHeight)
             
         } else {
          
-            self.collectionView?.frame = CGRect(x: 0, y: titleHeight + top,
-                                                width: self.frame.size.width,
-                                                height: self.frame.size.height - titleHeight - top)
+            self.collectionView?.frame = CGRect(x: collectionStartX, y: collectionStartY, width: collectionWidth, height: collectionHeight)
             self.selectionOperationView?.isHidden = true
             self.selectionOperationView?.frame = CGRect(x: 0,
                                                         y: self.frame.size.height,

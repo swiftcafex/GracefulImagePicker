@@ -19,24 +19,32 @@ class SelectionOperationView: UIView {
     var confirmClicked: (() -> Void)?
     var cancelClicked: (() -> Void)?
     
+    var bodyView: UIView?
+    
+    var suggestedHeight = CGFloat(60)
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 83.0 / 255.0, green: 148.0 / 255.0, blue: 232.0 / 255.0, alpha: 1.0)
+        
+        let bodyView = UIView(frame: CGRect.zero)
+        self.addSubview(bodyView)
+        self.bodyView = bodyView
         
         let titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.text = "已选中"
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 16)
-        self.addSubview(titleLabel)
+        bodyView.addSubview(titleLabel)
         self.titleLabel = titleLabel
         
         let btnCancel = UIButton(frame: CGRect.zero)
         btnCancel.setTitle("取消", for: .normal)
         btnCancel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         btnCancel.addTarget(self, action: #selector(self.btnCancelClicked), for: .touchUpInside)
-        self.addSubview(btnCancel)
+        bodyView.addSubview(btnCancel)
         
         self.btnCancel = btnCancel
         
@@ -44,13 +52,13 @@ class SelectionOperationView: UIView {
         btnConfirm.setTitle("确定", for: .normal)
         btnConfirm.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         btnConfirm.addTarget(self, action: #selector(self.btnConfirmClicked), for: .touchUpInside)
-        self.addSubview(btnConfirm)
+        bodyView.addSubview(btnConfirm)
         self.btnConfirm = btnConfirm
         
         let indicator = UIActivityIndicatorView(style: .white)
         indicator.isHidden = true
         
-        self.addSubview(indicator)
+        bodyView.addSubview(indicator)
         
         self.activityIndicator = indicator
         
@@ -59,7 +67,7 @@ class SelectionOperationView: UIView {
         labelProcess.font = UIFont.systemFont(ofSize: 15)
         labelProcess.textColor = UIColor.white
         labelProcess.text = "正在处理..."
-        self.addSubview(labelProcess)
+        bodyView.addSubview(labelProcess)
         
         self.labelProcess = labelProcess
         
@@ -74,12 +82,15 @@ class SelectionOperationView: UIView {
     override func layoutSubviews() {
         
         super.layoutSubviews()
-        self.titleLabel?.frame = CGRect(x: 12, y: 0, width: 200, height: self.frame.size.height)
-        self.btnCancel?.frame = CGRect(x: self.frame.size.width - 115, y: 0, width: 50, height: self.frame.size.height)
-        self.btnConfirm?.frame = CGRect(x: self.frame.size.width - 60, y: 0, width: 50, height: self.frame.size.height)
         
-        self.activityIndicator?.frame = CGRect(x: self.frame.size.width - 140, y: self.frame.size.height / 2 - 15, width: 30, height: 30)
-        self.labelProcess?.frame = CGRect(x: self.frame.size.width - 105, y: 0, width: 90, height: self.frame.size.height)
+        self.bodyView?.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: suggestedHeight)
+        
+        self.titleLabel?.frame = CGRect(x: 12, y: 0, width: 200, height: self.bodyView?.frame.size.height ?? 0)
+        self.btnCancel?.frame = CGRect(x: self.frame.size.width - 115, y: 0, width: 50, height: self.bodyView?.frame.size.height ?? 0)
+        self.btnConfirm?.frame = CGRect(x: self.frame.size.width - 60, y: 0, width: 50, height: self.bodyView?.frame.size.height ?? 0)
+        
+        self.activityIndicator?.frame = CGRect(x: self.frame.size.width - 140, y: (self.bodyView?.frame.size.height ?? 0) / 2 - 15, width: 30, height: 30)
+        self.labelProcess?.frame = CGRect(x: self.frame.size.width - 105, y: 0, width: 90, height: (self.bodyView?.frame.size.height ?? 0))
         
     }
     
