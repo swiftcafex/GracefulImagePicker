@@ -681,17 +681,20 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
         for index in self.selectedIndex {
             
             if let asset = self.assetResult[index.row].asset {
-            
+
                 let requestOptions = PHImageRequestOptions()
-                requestOptions.resizeMode = .exact
+                requestOptions.resizeMode = .none
                 requestOptions.deliveryMode = .highQualityFormat
                 requestOptions.isNetworkAccessAllowed = true
                 
-                let requestID = PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFill, options: requestOptions,resultHandler: { (image, info) in
-                    
+                let requestID = PHImageManager.default().requestImage(for: asset,
+                                                                      targetSize: PHImageManagerMaximumSize,
+                                                                      contentMode: PHImageContentMode.aspectFill,
+                                                                      options: requestOptions,resultHandler: { (image, info) in
+                              
                     if let curID = info?[PHImageResultRequestIDKey] as? PHImageRequestID {
                         
-                        // remove current item
+                        // 加载完成后, 删除任务ID
                         if let index = requestIDList.firstIndex(of: curID) {
                             
                             requestIDList.remove(at: index)
@@ -700,14 +703,14 @@ public class GracefulImagePickerView: UIView, UICollectionViewDelegate, UICollec
                         
                     }
                     
-                    if let img = image {
+                    if 	let img = image {
                         
                         imageLoaded.append(img)
                         assetsLoated.append(asset)
                         
                     }
                     
-                    // all request finished
+                    // 所有任务都完成, 开启回调
                     if requestIDList.count == 0 {
                         
                         self.deSeelctAllImages()

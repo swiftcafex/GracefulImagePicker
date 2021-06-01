@@ -158,6 +158,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return section.title
         
     }
+    
     // Cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
