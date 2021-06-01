@@ -1,35 +1,14 @@
 PODS:
   - CircleProgressBar (0.32)
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
-  - GracefulImagePicker (0.3.1):
+  - GracefulImagePicker (0.7):
     - CircleProgressBar
-  - Nimble (7.3.4)
-  - Nimble-Snapshots (6.3.0):
-    - Nimble-Snapshots/Core (= 6.3.0)
-  - Nimble-Snapshots/Core (6.3.0):
-    - FBSnapshotTestCase (~> 2.0)
-    - Nimble (~> 7.0)
-  - Quick (1.2.0)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase (~> 2.1.4)
   - GracefulImagePicker (from `../`)
-  - Nimble
-  - Nimble-Snapshots (~> 6.3.0)
-  - Quick (~> 1.2.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CircleProgressBar
-    - FBSnapshotTestCase
-    - Nimble-Snapshots
-    - Quick
-  trunk:
-    - Nimble
 
 EXTERNAL SOURCES:
   GracefulImagePicker:
@@ -37,12 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  GracefulImagePicker: bb9c94848120fecf164a480a33dd96f92037dbff
-  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  GracefulImagePicker: a4c7f4b3e203a0cf02d2edc8cda07df5c1d81532
 
-PODFILE CHECKSUM: 7c8c932d1cfb77e799a76b66eeef565ea9f2a1cb
+PODFILE CHECKSUM: a2eaf78dd5da4e32938de12c737c4ba21bf0d337
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.10.0.beta.1

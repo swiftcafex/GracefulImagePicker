@@ -1,6 +1,6 @@
 {
   "name": "GracefulImagePicker",
-  "version": "0.3.1",
+  "version": "0.7",
   "summary": "A functional UI component for pick image on iOS.",
   "description": "A functional UI component for pick image on iOS. .",
   "homepage": "https://github.com/swiftcafex/GracefulImagePicker",
@@ -13,8 +13,9 @@
   },
   "source": {
     "git": "https://github.com/swiftcafex/GracefulImagePicker.git",
-    "tag": "0.3.1"
+    "tag": "0.7"
   },
+  "swift_versions": "4.2",
   "platforms": {
     "ios": "8.0"
   },
@@ -29,5 +30,6 @@
     "CircleProgressBar": [
 
     ]
-  }
+  },
+  "swift_version": "4.2"
 }
